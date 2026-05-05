@@ -7,8 +7,8 @@
 <section class="section-shell pt-12 pb-12">
     <div class="container-tech">
         @include('partials.breadcrumb', ['items' => [
-            ['label' => 'Home', 'url' => route('home')],
-            ['label' => 'Catalog', 'url' => route('products.index')],
+            ['label' => 'Inicio', 'url' => route('home')],
+            ['label' => 'Bioagentes', 'url' => route('products.index')],
             ['label' => $product['name']],
         ]])
 
@@ -47,14 +47,14 @@
 
                     <div class="product-mockup-meta">
                         <span>{{ $product['facility'] }}</span>
-                        <span>RISK&nbsp;{{ $product['risk_index'] }}</span>
+                        <span>RIESGO&nbsp;{{ $product['risk_index'] }}</span>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-3 gap-3">
                     @php
                         $thumbIcons = ['scan', 'barcode', 'database'];
-                        $thumbLabels = ['DEEP SCAN', 'SAMPLE ID', 'ARCHIVE'];
+                        $thumbLabels = ['ESCANEO', 'ID MUESTRA', 'ARCHIVO'];
                     @endphp
                     @foreach ($thumbIcons as $tIndex => $thumbIcon)
                         <figure class="aspect-square border border-[#5D6E6E]/25 bg-[#0A0A0A] grid place-items-center hover:border-[#ED1C24] transition-colors relative">
@@ -90,19 +90,19 @@
 
                 <div class="border-y border-[#5D6E6E]/25 py-5 grid grid-cols-2 gap-y-3 gap-x-6">
                     <div>
-                        <p class="font-classified text-[0.65rem] tracking-[0.28em] text-[#5D6E6E]">CLEARANCE</p>
+                        <p class="font-classified text-[0.65rem] tracking-[0.28em] text-[#5D6E6E]">AUTORIZACIÓN</p>
                         <p class="font-display text-[#ED1C24] tracking-[0.2em] mt-1">{{ $product['clearance'] }}</p>
                     </div>
                     <div>
-                        <p class="font-classified text-[0.65rem] tracking-[0.28em] text-[#5D6E6E]">UNIT&nbsp;PRICE</p>
+                        <p class="font-classified text-[0.65rem] tracking-[0.28em] text-[#5D6E6E]">PRECIO&nbsp;UNITARIO</p>
                         <p class="font-display text-[#FFFFFF] tracking-[0.2em] mt-1 text-xl">${{ number_format($product['price'], 0, ',', '.') }}</p>
                     </div>
                     <div>
-                        <p class="font-classified text-[0.65rem] tracking-[0.28em] text-[#5D6E6E]">FACILITY</p>
+                        <p class="font-classified text-[0.65rem] tracking-[0.28em] text-[#5D6E6E]">INSTALACIÓN</p>
                         <p class="font-classified text-[#FFFFFF] tracking-[0.16em] mt-1">{{ $product['facility'] }}</p>
                     </div>
                     <div>
-                        <p class="font-classified text-[0.65rem] tracking-[0.28em] text-[#5D6E6E]">SUBJECT&nbsp;ID</p>
+                        <p class="font-classified text-[0.65rem] tracking-[0.28em] text-[#5D6E6E]">ID&nbsp;SUJETO</p>
                         <p class="font-classified text-[#FFFFFF] tracking-[0.16em] mt-1">{{ $product['id_code'] }}</p>
                     </div>
                     @if (! empty($product['stock']))
@@ -113,7 +113,7 @@
                     @endif
                     @if (! empty($product['risk_index']))
                         <div>
-                            <p class="font-classified text-[0.65rem] tracking-[0.28em] text-[#5D6E6E]">RISK&nbsp;INDEX</p>
+                            <p class="font-classified text-[0.65rem] tracking-[0.28em] text-[#5D6E6E]">ÍNDICE&nbsp;DE&nbsp;RIESGO</p>
                             <p class="font-classified text-[#ED1C24] tracking-[0.16em] mt-1">{{ $product['risk_index'] }}</p>
                         </div>
                     @endif
@@ -122,25 +122,25 @@
                 <div class="flex flex-col gap-3">
                     <button type="button" class="btn btn-primary btn-block">
                         <x-tabler-fingerprint class="size-4" aria-hidden="true" />
-                        Request Authorization
+                        Solicitar Autorización
                     </button>
                     <button type="button" class="btn btn-restricted btn-block">
                         <x-tabler-shopping-cart class="size-4" aria-hidden="true" />
-                        Add to Pending Cart
+                        Agregar al Carrito
                     </button>
                     <p class="font-classified text-[0.7rem] tracking-[0.24em] text-[#5D6E6E] text-center">
-                        Checkout module pending internal approval.
+                        Módulo de checkout pendiente de aprobación interna.
                     </p>
                 </div>
 
                 {{-- CONTAINMENT NOTICE --}}
                 <div class="clearance-panel">
                     <div class="clearance-panel-header">
-                        <span class="font-display text-[0.7rem] tracking-[0.32em] text-[#FFFFFF]">Containment Notice</span>
+                        <span class="font-display text-[0.7rem] tracking-[0.32em] text-[#FFFFFF]">Aviso de Contención</span>
                         <x-tabler-alert-triangle class="size-4 text-[#ED1C24]" aria-hidden="true" />
                     </div>
                     <p class="font-classified text-[0.78rem] leading-relaxed text-[#9CACAD]">
-                        This item is part of a fictional classified inventory. Access requires internal authorization and is intended for narrative, academic and visual design purposes only.
+                        Este ítem forma parte de un inventario clasificado ficticio. El acceso requiere autorización interna y está destinado únicamente a fines narrativos, académicos y de diseño visual.
                     </p>
                 </div>
             </aside>
@@ -152,33 +152,33 @@
 <section class="section-shell py-16 bg-[#0A0A0A] border-y border-[#5D6E6E]/20" aria-labelledby="spec-heading">
     <div class="container-tech grid gap-12 lg:grid-cols-12">
         <div class="lg:col-span-4 flex flex-col gap-4">
-            <span class="section-heading-eyebrow" data-animate="fade-up">Technical Spec</span>
-            <h2 id="spec-heading" data-animate="fade-up">File Composition</h2>
+            <span class="section-heading-eyebrow" data-animate="fade-up">Especificación Técnica</span>
+            <h2 id="spec-heading" data-animate="fade-up">Composición del Archivo</h2>
             <p class="text-[#9CACAD] max-w-md" data-animate="fade-up">
-                Internal metadata associated with this fictional asset. All values are framed as in-universe documentation for narrative context.
+                Metadatos internos asociados a este activo ficticio. Todos los valores se presentan como documentación dentro del universo narrativo.
             </p>
         </div>
 
         <div class="lg:col-span-8" data-animate="panel">
             @include('partials.technical-table', [
-                'caption' => 'CLASSIFIED METADATA — DO NOT REDISTRIBUTE',
+                'caption' => 'METADATOS CLASIFICADOS — NO REDISTRIBUIR',
                 'rows' => array_filter([
-                    ['label' => 'Subject ID', 'value' => $product['id_code']],
-                    ['label' => 'Type', 'value' => $product['type'] ?? null],
-                    ['label' => 'Clearance Level', 'value' => $product['clearance']],
-                    ['label' => 'Containment Class', 'value' => $product['containment_class']],
-                    ['label' => 'Facility', 'value' => $product['facility']],
-                    ['label' => 'Format', 'value' => $product['format']],
+                    ['label' => 'ID Sujeto', 'value' => $product['id_code']],
+                    ['label' => 'Tipo', 'value' => $product['type'] ?? null],
+                    ['label' => 'Nivel de Autorización', 'value' => $product['clearance']],
+                    ['label' => 'Clase de Contención', 'value' => $product['containment_class']],
+                    ['label' => 'Instalación', 'value' => $product['facility']],
+                    ['label' => 'Formato', 'value' => $product['format']],
                     ['label' => 'Color Visual', 'value' => $product['color_visual'] ?? null],
-                    ['label' => 'Origin', 'value' => $product['origin'] ?? null],
-                    ['label' => 'Storage', 'value' => $product['storage'] ?? null],
-                    ['label' => 'Stability', 'value' => $product['stability'] ?? null],
-                    ['label' => 'Mutation Potential', 'value' => $product['mutation_potential'] ?? null],
-                    ['label' => 'Known Applications', 'value' => $product['applications'] ?? null],
-                    ['label' => 'Distribution', 'value' => $product['distribution'] ?? null],
-                    ['label' => 'Availability', 'value' => $product['availability'] ?? null],
-                    ['label' => 'Risk Index', 'value' => $product['risk_index'] ?? null],
-                    ['label' => 'Last Revision', 'value' => $product['last_revision'] ?? null],
+                    ['label' => 'Origen', 'value' => $product['origin'] ?? null],
+                    ['label' => 'Almacenamiento', 'value' => $product['storage'] ?? null],
+                    ['label' => 'Estabilidad', 'value' => $product['stability'] ?? null],
+                    ['label' => 'Potencial de Mutación', 'value' => $product['mutation_potential'] ?? null],
+                    ['label' => 'Aplicaciones Conocidas', 'value' => $product['applications'] ?? null],
+                    ['label' => 'Distribución', 'value' => $product['distribution'] ?? null],
+                    ['label' => 'Disponibilidad', 'value' => $product['availability'] ?? null],
+                    ['label' => 'Índice de Riesgo', 'value' => $product['risk_index'] ?? null],
+                    ['label' => 'Última Revisión', 'value' => $product['last_revision'] ?? null],
                 ], static fn ($row) => ! empty($row['value'])),
             ])
         </div>
@@ -190,12 +190,12 @@
     <div class="container-tech">
         <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
             <div class="section-heading">
-                <span class="section-heading-eyebrow" data-animate="fade-up">Related Records</span>
-                <h2 id="related-heading" data-animate="fade-up">Adjacent Inventory</h2>
+                <span class="section-heading-eyebrow" data-animate="fade-up">Registros Relacionados</span>
+                <h2 id="related-heading" data-animate="fade-up">Inventario Adyacente</h2>
             </div>
             <a href="{{ route('products.index') }}" class="btn btn-ghost self-start lg:self-end">
                 <x-tabler-arrow-up-right class="size-4" aria-hidden="true" />
-                Browse All
+                Explorar Todo
             </a>
         </div>
 
