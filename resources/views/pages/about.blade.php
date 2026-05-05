@@ -1,50 +1,224 @@
 @extends('layouts.app')
 
-@section('title', 'About')
-@section('description', 'Institutional profile of the fictional Umbrella Research Division — bioengineering, pharmaceutical research, containment systems, private security and corporate oversight.')
+@section('title', 'Director Científico')
+@section('description', 'Perfil clasificado del Director Científico de Umbrella Corporation — Mateo Spencer.')
 
 @section('content')
-<section class="section-shell pt-12 pb-12" aria-labelledby="about-heading">
-    <div class="container-tech">
+
+@php
+    $scientistPhotoExists = file_exists(public_path('images/team/mateo-spencer.webp'));
+@endphp
+
+{{-- HERO + DIRECTOR CIENTÍFICO --}}
+<section class="section-shell catalog-hero pt-12 pb-16" aria-labelledby="scientist-heading">
+    <div class="catalog-hero__bg" aria-hidden="true">
+        <img
+            src="{{ asset('images/hero/umbrella-about.webp') }}"
+            alt=""
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+        />
+        <div class="catalog-hero__bg-veil"></div>
+        <div class="catalog-hero__bg-grid"></div>
+    </div>
+
+    <div class="container-tech relative">
         @include('partials.breadcrumb', ['items' => [
-            ['label' => 'Home', 'url' => route('home')],
-            ['label' => 'About'],
+            ['label' => 'Inicio', 'url' => route('home')],
+            ['label' => 'Acerca'],
         ]])
 
-        <div class="grid gap-10 lg:grid-cols-12 mt-8 items-end">
-            <div class="lg:col-span-7 flex flex-col gap-5">
-                <span class="section-heading-eyebrow" data-animate="fade-up">Institutional Profile</span>
-                <h1 id="about-heading" data-animate="fade-up">About Umbrella<br />Research Division</h1>
-                <p class="text-[#9CACAD] max-w-2xl" data-animate="fade-up">
-                    Umbrella Research Division operates as a fictional internal archive for narrative documents, replicas and design reference material. The division is presented as part of a tightly governed, opaque pharmaceutical conglomerate.
-                </p>
-            </div>
-            <div class="lg:col-span-5 technical-panel" data-animate="panel">
-                <p class="font-classified text-[0.7rem] tracking-[0.3em] text-[#9CACAD]">CORPORATE&nbsp;CHARTER</p>
-                <p class="text-[#FFFFFF] mt-3 text-sm">
-                    "We exist to advance the boundaries of life science under conditions of absolute discipline, oversight and discretion."
-                </p>
-                <p class="font-classified text-[0.7rem] tracking-[0.24em] text-[#5D6E6E] mt-4">CHARTER REV.&nbsp;08&nbsp;·&nbsp;UC-1968-A</p>
-            </div>
-        </div>
+        <article class="scientist-card mt-8" data-animate="panel">
+            {{-- LEFT — photo --}}
+            <figure class="scientist-card__photo">
+                <span class="corner-mark tl" aria-hidden="true"></span>
+                <span class="corner-mark tr" aria-hidden="true"></span>
+                <span class="corner-mark bl" aria-hidden="true"></span>
+                <span class="corner-mark br" aria-hidden="true"></span>
 
-        <span class="hairline-red block mt-12" data-animate="line"></span>
+                @if ($scientistPhotoExists)
+                    <img
+                        src="{{ asset('images/team/mateo-spencer.webp') }}"
+                        alt="Mateo Spencer — Director Científico"
+                        class="scientist-card__img"
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="async"
+                    />
+                @else
+                    <div class="scientist-card__placeholder" aria-hidden="true">
+                        <x-tabler-user-circle class="size-20 text-[#5D6E6E]" />
+                        <p class="font-classified text-[0.65rem] tracking-[0.32em] text-[#5D6E6E] mt-3 text-center">
+                            ARCHIVO FOTOGRÁFICO<br />PENDIENTE
+                        </p>
+                    </div>
+                @endif
+            </figure>
+
+            {{-- RIGHT — bio --}}
+            <div class="scientist-card__bio">
+                <div class="flex items-center justify-between gap-3">
+                    <span class="font-classified text-[0.7rem] tracking-[0.32em] text-[#9CACAD]">DIVISIÓN&nbsp;RACCOON</span>
+                    <span class="badge badge-executive">
+                        <x-tabler-crown class="size-3.5" aria-hidden="true" />
+                        BIOINGENIERO JEFE
+                    </span>
+                </div>
+
+                <h1 id="scientist-heading" class="scientist-card__name">Mateo Spencer</h1>
+                <p class="scientist-card__role">// DIRECTOR CIENTÍFICO · BIOINGENIERÍA</p>
+
+                <p class="scientist-card__intro">
+                    Tres décadas dirigiendo programas de selección biológica avanzada dentro de Umbrella Corporation. Responsable de la continuidad operativa entre los archivos clásicos y los nuevos pilares de investigación.
+                </p>
+
+                <p class="scientist-card__intro">
+                    Bajo su supervisión se consolidaron los protocolos de contención que rigen actualmente todo el inventario biológico del archivo, incluyendo los desarrollos derivados del Progenitor.
+                </p>
+
+                <dl class="scientist-card__data">
+                    <div>
+                        <dt>ID&nbsp;PERSONAL</dt>
+                        <dd>UC-1968-A</dd>
+                    </div>
+                    <div>
+                        <dt>AUTORIZACIÓN</dt>
+                        <dd class="text-[#ED1C24]">Nivel&nbsp;05</dd>
+                    </div>
+                    <div>
+                        <dt>INSTALACIÓN</dt>
+                        <dd>NEST · Arklay</dd>
+                    </div>
+                    <div>
+                        <dt>ESTADO</dt>
+                        <dd>
+                            <span class="status-dot status-dot-nominal" aria-hidden="true"></span>
+                            Activo
+                        </dd>
+                    </div>
+                </dl>
+
+                <blockquote class="scientist-card__quote">
+                    <p>"La disciplina genera unidad. La unidad, poder. El poder es vida."</p>
+                </blockquote>
+            </div>
+        </article>
     </div>
 </section>
 
-<section class="section-shell pt-2 pb-20" aria-labelledby="divisions-heading">
-    <div class="container-tech">
-        <div class="section-heading mb-10">
-            <span class="section-heading-eyebrow" data-animate="fade-up">Operational Divisions</span>
-            <h2 id="divisions-heading" data-animate="fade-up">Five Pillars of Oversight</h2>
-            <p class="text-[#9CACAD] max-w-xl" data-animate="fade-up">
-                Each division enforces narrative continuity within the archive. Together they shape the editorial and design tone of the inventory.
+{{-- LA CORPORACIÓN — descripción + operaciones actuales --}}
+<section class="section-shell py-20 bg-[#0A0A0A] border-y border-[#5D6E6E]/20" aria-labelledby="overview-heading">
+    <div class="container-tech grid gap-12 lg:grid-cols-12 items-start">
+        <div class="lg:col-span-7 flex flex-col gap-5">
+            <span class="section-heading-eyebrow" data-animate="fade-up">El Conglomerado</span>
+            <h2 id="overview-heading" data-animate="fade-up">Bioingeniería bajo disciplina.</h2>
+            <p class="text-[#9CACAD] text-base leading-relaxed max-w-2xl" data-animate="fade-up">
+                Umbrella Corporation opera como un conglomerado farmacéutico privado dedicado a la bioingeniería, los sistemas de contención y el desarrollo de tecnología propietaria. Toda la operación está estructurada en torno a un único principio rector: el dominio absoluto sobre la materia viva.
+            </p>
+            <p class="text-[#9CACAD] text-base leading-relaxed max-w-2xl" data-animate="fade-up">
+                Actualmente la División Raccoon mantiene activos los programas derivados del Progenitor, el archivo de Bio-Agentes Parasitarios y los pilares experimentales abiertos en la última década. Cada bioagente del archivo opera bajo supervisión ejecutiva directa y con contención sellada las veinticuatro horas.
             </p>
         </div>
 
-        <ul class="grid gap-4 md:grid-cols-2 lg:grid-cols-3" data-stagger>
+        <aside class="catalog-console lg:col-span-5" data-animate="panel" aria-label="Operaciones actuales">
+            <span class="corner-mark tl" aria-hidden="true"></span>
+            <span class="corner-mark tr" aria-hidden="true"></span>
+            <span class="corner-mark bl" aria-hidden="true"></span>
+            <span class="corner-mark br" aria-hidden="true"></span>
+
+            <header class="catalog-console__head">
+                <span class="catalog-console__label">
+                    <x-tabler-activity class="size-3.5 text-[#ED1C24]" aria-hidden="true" />
+                    OPERACIONES ACTUALES
+                </span>
+                <span class="catalog-console__status">
+                    <span class="status-dot status-dot-nominal" aria-hidden="true"></span>
+                    EN VIVO
+                </span>
+            </header>
+
+            <dl class="catalog-console__rows">
+                <div class="catalog-console__row">
+                    <dt>Fundación</dt>
+                    <dd>
+                        <span class="catalog-console__value">1968</span>
+                        <span class="catalog-console__unit">{{ now()->year - 1968 }}&nbsp;AÑOS</span>
+                    </dd>
+                </div>
+                <div class="catalog-console__row">
+                    <dt>Sede</dt>
+                    <dd>
+                        <span class="catalog-console__value catalog-console__value--mono">RACCOON&nbsp;CITY</span>
+                    </dd>
+                </div>
+                <div class="catalog-console__row">
+                    <dt>Programas activos</dt>
+                    <dd>
+                        <span class="catalog-console__value">16</span>
+                        <span class="catalog-console__unit">BIOAGENTES</span>
+                    </dd>
+                </div>
+                <div class="catalog-console__row">
+                    <dt>Carta corporativa</dt>
+                    <dd>
+                        <span class="catalog-console__value catalog-console__value--accent">REV.&nbsp;08</span>
+                    </dd>
+                </div>
+            </dl>
+
+            <footer class="catalog-console__foot">
+                <div class="barcode-line">
+                    @php $bars = [3, 1, 2, 1, 4, 2, 1, 3, 1, 4, 2, 3, 1, 2, 4, 1, 2, 3]; @endphp
+                    @foreach ($bars as $weight)
+                        <span style="width: {{ $weight }}px;"></span>
+                    @endforeach
+                </div>
+                <span class="catalog-console__node">UC-1968-A</span>
+            </footer>
+        </aside>
+    </div>
+</section>
+
+{{-- TRAYECTORIA --}}
+<section class="section-shell timeline-section py-20" aria-labelledby="timeline-heading">
+    <div class="container-tech grid gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-4 flex flex-col gap-4">
+            <span class="section-heading-eyebrow timeline-section__eyebrow" data-animate="fade-up">Cronología Interna</span>
+            <h2 id="timeline-heading" class="timeline-section__title" data-animate="fade-up">Hitos de Referencia</h2>
+            <p class="timeline-section__desc max-w-md" data-animate="fade-up">
+                Anclajes narrativos que marcan la trayectoria operativa de Umbrella Corporation y la continuidad del archivo.
+            </p>
+        </div>
+
+        <ol class="lg:col-span-8 flex flex-col" data-animate-table>
+            @foreach ($timeline as $entry)
+                <li class="timeline-section__row" data-animate="table-row">
+                    <span class="timeline-section__year">{{ $entry['year'] }}</span>
+                    <div class="flex flex-col gap-1">
+                        <span class="timeline-section__entry-title">{{ $entry['title'] }}</span>
+                        <p class="timeline-section__entry-note">{{ $entry['note'] }}</p>
+                    </div>
+                </li>
+            @endforeach
+        </ol>
+    </div>
+</section>
+
+{{-- PILARES OPERATIVOS --}}
+<section class="section-shell py-20" aria-labelledby="divisions-heading">
+    <div class="container-tech">
+        <div class="section-heading mb-10">
+            <span class="section-heading-eyebrow" data-animate="fade-up">Estructura Interna</span>
+            <h2 id="divisions-heading" data-animate="fade-up">Pilares Operativos</h2>
+            <p class="text-[#9CACAD] max-w-xl" data-animate="fade-up">
+                Cinco divisiones componen la espina dorsal de la corporación. Cada una refuerza la continuidad narrativa del archivo y enmarca un dominio operativo específico.
+            </p>
+        </div>
+
+        <ul class="grid gap-5 md:grid-cols-2 lg:grid-cols-3" data-stagger>
             @foreach ($divisions as $division)
-                <li class="card-technical h-full flex flex-col gap-4" data-stagger-item data-card-hover>
+                <li class="card-technical h-full flex flex-col gap-4" data-stagger-item>
                     <span class="icon-frame icon-frame-lg">
                         <x-dynamic-component
                             :component="'tabler-' . $division['icon']"
@@ -54,76 +228,10 @@
                     </span>
                     <h3 class="text-[1.05rem] tracking-[0.06em] text-[#FFFFFF]">{{ $division['name'] }}</h3>
                     <p class="text-sm text-[#9CACAD]">{{ $division['description'] }}</p>
-                    <p class="font-classified text-[0.7rem] tracking-[0.28em] text-[#5D6E6E] mt-auto">DIVISION ACTIVE</p>
+                    <p class="font-classified text-[0.7rem] tracking-[0.28em] text-[#5D6E6E] mt-auto">DIVISIÓN ACTIVA</p>
                 </li>
             @endforeach
         </ul>
-    </div>
-</section>
-
-<section class="section-shell py-16 bg-[#0A0A0A] border-y border-[#5D6E6E]/20" aria-labelledby="timeline-heading">
-    <div class="container-tech grid gap-12 lg:grid-cols-12">
-        <div class="lg:col-span-4 flex flex-col gap-4">
-            <span class="section-heading-eyebrow" data-animate="fade-up">Internal Timeline</span>
-            <h2 id="timeline-heading" data-animate="fade-up">Reference Milestones</h2>
-            <p class="text-[#9CACAD] max-w-md" data-animate="fade-up">
-                Narrative anchors used across the archive to provide editorial continuity for documents and inventory.
-            </p>
-        </div>
-
-        <ol class="lg:col-span-8 flex flex-col" data-animate-table>
-            @foreach ($timeline as $entry)
-                <li class="grid grid-cols-[120px_1fr] gap-6 items-start py-5 border-b border-[#5D6E6E]/20 last:border-0" data-animate="table-row">
-                    <span class="font-display text-[#ED1C24] text-2xl tracking-[0.2em]">{{ $entry['year'] }}</span>
-                    <div class="flex flex-col gap-1">
-                        <span class="font-display text-[#FFFFFF] text-base tracking-[0.16em]">{{ $entry['title'] }}</span>
-                        <p class="text-sm text-[#9CACAD]">{{ $entry['note'] }}</p>
-                    </div>
-                </li>
-            @endforeach
-        </ol>
-    </div>
-</section>
-
-<section class="section-shell pt-16 pb-24" aria-labelledby="oversight-heading">
-    <div class="container-tech grid gap-10 lg:grid-cols-12 items-center">
-        <div class="lg:col-span-7 flex flex-col gap-5">
-            <span class="section-heading-eyebrow" data-animate="fade-up">Corporate Oversight</span>
-            <h2 id="oversight-heading" data-animate="fade-up">Discretion is the standard</h2>
-            <p class="text-[#9CACAD] max-w-xl" data-animate="fade-up">
-                The Research Division does not operate in isolation. Every archive entry is reviewed against narrative continuity and executive policy before circulation.
-            </p>
-            <a href="{{ route('contact') }}" class="btn btn-primary self-start" data-animate="fade-up">
-                <x-tabler-id-badge-2 class="size-4" aria-hidden="true" />
-                Request Clearance
-            </a>
-        </div>
-
-        <aside class="lg:col-span-5 grid gap-3" data-animate="panel">
-            @php
-                $traits = [
-                    ['icon' => 'building', 'label' => 'Headquarters', 'value' => 'Raccoon Division'],
-                    ['icon' => 'database', 'label' => 'Active Records', 'value' => '24,182'],
-                    ['icon' => 'eye', 'label' => 'Review Cadence', 'value' => 'Weekly'],
-                    ['icon' => 'user-shield', 'label' => 'Oversight Board', 'value' => '7 members'],
-                ];
-            @endphp
-            @foreach ($traits as $trait)
-                <div class="flex items-center gap-4 border border-[#5D6E6E]/20 px-4 py-3">
-                    <span class="icon-frame">
-                        <x-dynamic-component
-                            :component="'tabler-' . $trait['icon']"
-                            class="size-5"
-                            aria-hidden="true"
-                        />
-                    </span>
-                    <div class="flex flex-col">
-                        <span class="font-classified text-[0.7rem] tracking-[0.28em] text-[#9CACAD]">{{ $trait['label'] }}</span>
-                        <span class="font-display text-[0.95rem] tracking-[0.18em] text-[#FFFFFF]">{{ $trait['value'] }}</span>
-                    </div>
-                </div>
-            @endforeach
-        </aside>
     </div>
 </section>
 @endsection
