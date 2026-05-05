@@ -1,176 +1,222 @@
 @extends('layouts.app')
 
-@section('title', 'Request Clearance')
-@section('description', 'Submit a clearance request to access classified inventory across the Umbrella Research Division archive.')
+@section('title', 'Solicitar Acceso')
+@section('description', 'Envíe una solicitud de acceso para acceder al inventario clasificado del archivo de Umbrella Corporation.')
 
 @section('content')
-<section class="section-shell pt-12 pb-12" aria-labelledby="contact-heading">
-    <div class="container-tech">
+
+{{-- HERO + DOCUMENT (sharing bg image) --}}
+<section class="section-shell catalog-hero pt-12 pb-16" aria-labelledby="contact-heading">
+    <div class="catalog-hero__bg" aria-hidden="true">
+        <img
+            src="{{ asset('images/hero/umbrella-access.webp') }}"
+            alt=""
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+        />
+        <div class="catalog-hero__bg-veil"></div>
+        <div class="catalog-hero__bg-grid"></div>
+    </div>
+
+    <div class="container-tech relative">
         @include('partials.breadcrumb', ['items' => [
-            ['label' => 'Home', 'url' => route('home')],
-            ['label' => 'Request Clearance'],
+            ['label' => 'Inicio', 'url' => route('home')],
+            ['label' => 'Solicitar Acceso'],
         ]])
 
-        <div class="grid gap-10 lg:grid-cols-12 mt-8 items-end">
-            <div class="lg:col-span-7 flex flex-col gap-5">
-                <span class="section-heading-eyebrow" data-animate="fade-up">Access Control</span>
-                <h1 id="contact-heading" data-animate="fade-up">Request Clearance</h1>
-                <p class="text-[#9CACAD] max-w-xl" data-animate="fade-up">
-                    Submit your credentials and intended access tier. Manual review will be performed by Internal Affairs Division. Response time depends on requested clearance level.
-                </p>
-            </div>
-
-            <div class="lg:col-span-5 technical-panel" data-animate="panel">
-                <p class="font-classified text-[0.7rem] tracking-[0.3em] text-[#9CACAD]">PROTOCOL ACTIVE</p>
-                <p class="text-[#FFFFFF] mt-3 text-sm">
-                    All submissions are recorded and audited. Provide accurate justification — fictional and academic context only.
-                </p>
-            </div>
+        <div class="access-hero" data-animate="fade-up">
+            <span class="access-hero__eyebrow">Control de Acceso · Protocolo Activo</span>
+            <h1 id="contact-heading" class="access-hero__title">Solicitar<br />Acceso</h1>
+            <p class="access-hero__desc">
+                Envíe sus credenciales y el nivel de acceso solicitado. Toda solicitud queda registrada y auditada por la División de Asuntos Internos.
+            </p>
         </div>
 
-        <span class="hairline-red block mt-12" data-animate="line"></span>
-    </div>
-</section>
+        <span class="hairline-red block mt-10 mb-10" data-animate="line"></span>
 
-<section class="section-shell pt-2 pb-24">
-    <div class="container-tech grid gap-12 lg:grid-cols-12 items-start">
         <form
             action="#"
             method="POST"
-            class="lg:col-span-8 flex flex-col gap-5"
-            aria-labelledby="contact-form-heading"
+            class="access-doc"
+            aria-labelledby="contact-heading"
             data-animate="fade-up"
             onsubmit="event.preventDefault();"
         >
-            <h2 id="contact-form-heading" class="text-xl tracking-[0.18em]">Clearance Request Form</h2>
+            <span class="corner-mark tl" aria-hidden="true"></span>
+            <span class="corner-mark tr" aria-hidden="true"></span>
+            <span class="corner-mark bl" aria-hidden="true"></span>
+            <span class="corner-mark br" aria-hidden="true"></span>
 
-            <div class="grid gap-5 sm:grid-cols-2">
+            {{-- DOC HEADER --}}
+            <header class="access-doc__head">
+                <div class="access-doc__head-left">
+                    <span class="badge badge-classified">
+                        <x-tabler-eye class="size-3.5" aria-hidden="true" />
+                        CLASIFICADO
+                    </span>
+                    <span class="access-doc__head-id">UC-FORM-04 · v8</span>
+                </div>
+                <div class="access-doc__head-right">
+                    <span class="status-dot" aria-hidden="true"></span>
+                    EN GRABACIÓN
+                </div>
+            </header>
+
+            {{-- SECTION 01 — IDENTIDAD --}}
+            <fieldset class="access-doc__section">
+                <legend class="access-doc__legend">
+                    <span class="access-doc__legend-num">01</span>
+                    <span class="access-doc__legend-text">Identidad</span>
+                    <span class="access-doc__legend-line" aria-hidden="true"></span>
+                </legend>
+
+                <div class="access-doc__grid">
+                    <div class="flex flex-col">
+                        <label for="full-name" class="input-label">Nombre Completo</label>
+                        <input type="text" id="full-name" name="full-name" class="input-control" placeholder="J. Wesker" autocomplete="name" required />
+                    </div>
+
+                    <div class="flex flex-col">
+                        <label for="email" class="input-label">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" class="input-control" placeholder="agente@umbrella.corp" autocomplete="email" required />
+                    </div>
+                </div>
+            </fieldset>
+
+            {{-- SECTION 02 — ASIGNACIÓN --}}
+            <fieldset class="access-doc__section">
+                <legend class="access-doc__legend">
+                    <span class="access-doc__legend-num">02</span>
+                    <span class="access-doc__legend-text">Asignación</span>
+                    <span class="access-doc__legend-line" aria-hidden="true"></span>
+                </legend>
+
+                <div class="access-doc__grid">
+                    <div class="flex flex-col">
+                        <label for="department" class="input-label">Departamento</label>
+                        <select id="department" name="department" class="input-control" required>
+                            <option value="">Seleccione departamento</option>
+                            <option>Bioingeniería</option>
+                            <option>Investigación Farmacéutica</option>
+                            <option>Sistemas de Contención</option>
+                            <option>Seguridad Privada</option>
+                            <option>Supervisión Corporativa</option>
+                        </select>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <label for="clearance" class="input-label">Nivel Solicitado</label>
+                        <select id="clearance" name="clearance" class="input-control" required>
+                            <option value="">Seleccione nivel</option>
+                            <option>Nivel 3 — Nominal</option>
+                            <option>Nivel 4 — Restringido</option>
+                            <option>Nivel 5 — Crítico / Biohazard</option>
+                            <option>Nivel 5 — Clasificado</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+
+            {{-- SECTION 03 — JUSTIFICACIÓN --}}
+            <fieldset class="access-doc__section">
+                <legend class="access-doc__legend">
+                    <span class="access-doc__legend-num">03</span>
+                    <span class="access-doc__legend-text">Justificación</span>
+                    <span class="access-doc__legend-line" aria-hidden="true"></span>
+                </legend>
+
                 <div class="flex flex-col">
-                    <label for="full-name" class="input-label">
-                        <x-tabler-user-shield class="size-3.5 text-[#ED1C24] inline-block mr-1 -mt-0.5" aria-hidden="true" />
-                        Full Name
-                    </label>
-                    <input type="text" id="full-name" name="full-name" class="input-control" placeholder="J. Wesker" autocomplete="name" required />
+                    <label for="reason" class="input-label">Motivo del Acceso</label>
+                    <textarea id="reason" name="reason" rows="5" class="input-control" placeholder="Proporcione una justificación narrativa para el acceso al archivo. Solo contexto académico y ficticio."></textarea>
+                    <p class="input-helper">Todas las solicitudes se revisan manualmente. Evite información personal sensible.</p>
                 </div>
 
-                <div class="flex flex-col">
-                    <label for="email" class="input-label">
-                        <x-tabler-id-badge-2 class="size-3.5 text-[#ED1C24] inline-block mr-1 -mt-0.5" aria-hidden="true" />
-                        Email
-                    </label>
-                    <input type="email" id="email" name="email" class="input-control" placeholder="agent@umbrella.corp" autocomplete="email" required />
-                </div>
-
-                <div class="flex flex-col">
-                    <label for="department" class="input-label">
-                        <x-tabler-building class="size-3.5 text-[#ED1C24] inline-block mr-1 -mt-0.5" aria-hidden="true" />
-                        Department
-                    </label>
-                    <select id="department" name="department" class="input-control" required>
-                        <option value="">Select department</option>
-                        <option>Bioengineering</option>
-                        <option>Pharmaceutical Research</option>
-                        <option>Containment Systems</option>
-                        <option>Private Security</option>
-                        <option>Corporate Oversight</option>
-                    </select>
-                </div>
-
-                <div class="flex flex-col">
-                    <label for="clearance" class="input-label">
-                        <x-tabler-shield-lock class="size-3.5 text-[#ED1C24] inline-block mr-1 -mt-0.5" aria-hidden="true" />
-                        Requested Clearance
-                    </label>
-                    <select id="clearance" name="clearance" class="input-control" required>
-                        <option value="">Select level</option>
-                        <option>Level 1 — Clear</option>
-                        <option>Level 2 — Standby</option>
-                        <option>Level 3 — Nominal</option>
-                        <option>Level 4 — Restricted</option>
-                        <option>Level 5 — Critical / Biohazard</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="flex flex-col">
-                <label for="reason" class="input-label">
-                    <x-tabler-clipboard-list class="size-3.5 text-[#ED1C24] inline-block mr-1 -mt-0.5" aria-hidden="true" />
-                    Reason for Access
+                <label for="agree" class="access-doc__agree">
+                    <input type="checkbox" id="agree" name="agree" class="checkbox-control mt-1" required />
+                    <span>
+                        Acepto el protocolo interno de Umbrella y reconozco que esta solicitud forma parte de un proyecto académico ficticio de ecommerce.
+                    </span>
                 </label>
-                <textarea id="reason" name="reason" rows="6" class="input-control" placeholder="Provide narrative justification for archive access. Academic and fictional context only."></textarea>
-                <p class="input-helper">All submissions are reviewed manually. Avoid sensitive personal information.</p>
-            </div>
+            </fieldset>
 
-            <label for="agree" class="flex items-start gap-3 mt-2 text-sm text-[#9CACAD] cursor-pointer">
-                <input type="checkbox" id="agree" name="agree" class="checkbox-control mt-1" required />
-                <span>
-                    I agree to Umbrella internal protocol and acknowledge this submission is part of a fictional academic ecommerce project.
-                </span>
-            </label>
+            {{-- DOC FOOTER --}}
+            <footer class="access-doc__foot">
+                <div class="access-doc__stamp" aria-hidden="true">
+                    <span class="access-doc__stamp-ring">
+                        UMBRELLA · UMBRELLA · UMBRELLA · UMBRELLA ·
+                    </span>
+                    <x-tabler-fingerprint class="size-7 text-[#ED1C24]" />
+                </div>
 
-            <div class="flex flex-col sm:flex-row gap-3 mt-2">
-                <button type="submit" class="btn btn-primary">
-                    <x-tabler-fingerprint class="size-4" aria-hidden="true" />
-                    Submit Clearance Request
-                </button>
-                <button type="reset" class="btn btn-ghost">
-                    <x-tabler-x class="size-4" aria-hidden="true" />
-                    Clear Form
-                </button>
-            </div>
+                <div class="access-doc__foot-right">
+                    <button type="submit" class="btn btn-primary">
+                        <x-tabler-fingerprint class="size-4" aria-hidden="true" />
+                        Transmitir Solicitud
+                    </button>
+                    <button type="reset" class="btn btn-ghost">
+                        <x-tabler-x class="size-4" aria-hidden="true" />
+                        Limpiar
+                    </button>
+                </div>
+            </footer>
 
-            <p class="font-classified text-[0.7rem] tracking-[0.24em] text-[#5D6E6E] mt-2">
-                Form is presented for visual purposes. No data is transmitted.
+            <p class="access-doc__disclaimer">
+                Este formulario se presenta con fines visuales. No se transmiten datos. // FIN&nbsp;DEL&nbsp;DOCUMENTO
             </p>
         </form>
+    </div>
+</section>
 
-        <aside class="lg:col-span-4 flex flex-col gap-5" data-animate="panel">
-            <div class="clearance-panel">
-                <div class="clearance-panel-header">
-                    <span class="font-display text-[0.7rem] tracking-[0.3em] text-[#FFFFFF]">Clearance Request Protocol</span>
-                    <x-tabler-id-badge-2 class="size-4 text-[#ED1C24]" aria-hidden="true" />
-                </div>
-                <dl class="grid gap-3 text-sm">
-                    <div class="flex items-center justify-between">
-                        <dt class="font-classified text-[0.7rem] tracking-[0.22em] text-[#9CACAD]">Response Time</dt>
-                        <dd class="text-[#FFFFFF]">Pending</dd>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <dt class="font-classified text-[0.7rem] tracking-[0.22em] text-[#9CACAD]">Status</dt>
-                        <dd class="text-[#ED1C24]">Manual Review Required</dd>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <dt class="font-classified text-[0.7rem] tracking-[0.22em] text-[#9CACAD]">Channel</dt>
-                        <dd class="text-[#FFFFFF]">Internal Use Only</dd>
-                    </div>
-                </dl>
-            </div>
+{{-- PROTOCOLO — 3 panels horizontal --}}
+<section class="section-shell pb-24" aria-labelledby="protocol-heading">
+    <div class="container-tech">
+        <div class="section-heading mb-8">
+            <span class="section-heading-eyebrow" data-animate="fade-up">Protocolo de Solicitud</span>
+            <h2 id="protocol-heading" data-animate="fade-up">Pasos de revisión</h2>
+        </div>
 
-            <div class="technical-panel">
-                <p class="font-classified text-[0.7rem] tracking-[0.3em] text-[#9CACAD]">Submission Steps</p>
-                <ol class="mt-4 flex flex-col gap-3 text-sm">
-                    <li class="flex items-start gap-3">
-                        <span class="font-display text-[#ED1C24] text-sm">01</span>
-                        <span class="text-[#FFFFFF]">Provide credentials and department of record.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="font-display text-[#ED1C24] text-sm">02</span>
-                        <span class="text-[#FFFFFF]">Justify access tier with narrative context.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="font-display text-[#ED1C24] text-sm">03</span>
-                        <span class="text-[#FFFFFF]">Await internal review confirmation.</span>
-                    </li>
-                </ol>
-            </div>
-
-            <div class="border border-[#5D6E6E]/25 p-5">
-                <p class="font-classified text-[0.7rem] tracking-[0.3em] text-[#ED1C24]">Notice</p>
-                <p class="text-sm text-[#9CACAD] mt-2">
-                    Submissions related to real-world harm, weapons or illegal activity are rejected automatically. All requests must remain inside the fictional Umbrella narrative scope.
+        <div class="grid gap-5 md:grid-cols-3" data-stagger>
+            <article class="protocol-step" data-stagger-item>
+                <span class="protocol-step__num">01</span>
+                <h3 class="protocol-step__title">Recepción</h3>
+                <p class="protocol-step__desc">
+                    Indique credenciales, departamento de registro y nivel de acceso solicitado.
                 </p>
-            </div>
-        </aside>
+                <span class="protocol-step__meta">
+                    <x-tabler-id-badge-2 class="size-3.5" aria-hidden="true" />
+                    <span class="protocol-step__meta-text">INGRESO</span>
+                </span>
+            </article>
+
+            <article class="protocol-step" data-stagger-item>
+                <span class="protocol-step__num">02</span>
+                <h3 class="protocol-step__title">Revisión Manual</h3>
+                <p class="protocol-step__desc">
+                    La División de Asuntos Internos audita la justificación narrativa y el nivel solicitado.
+                </p>
+                <span class="protocol-step__meta">
+                    <x-tabler-eye class="size-3.5" aria-hidden="true" />
+                    <span class="protocol-step__meta-text">AUDITORÍA</span>
+                </span>
+            </article>
+
+            <article class="protocol-step" data-stagger-item>
+                <span class="protocol-step__num">03</span>
+                <h3 class="protocol-step__title">Confirmación</h3>
+                <p class="protocol-step__desc">
+                    El comité ejecutivo emite la autorización formal o solicita información adicional.
+                </p>
+                <span class="protocol-step__meta">
+                    <x-tabler-shield-check class="size-3.5" aria-hidden="true" />
+                    <span class="protocol-step__meta-text">EMISIÓN</span>
+                </span>
+            </article>
+        </div>
+
+        <p class="font-classified text-[0.7rem] tracking-[0.28em] text-[#5D6E6E] text-center" style="margin-top: 5rem;" data-animate="fade-up">
+            CANAL INTERNO · UC-1968-A
+        </p>
     </div>
 </section>
 @endsection
