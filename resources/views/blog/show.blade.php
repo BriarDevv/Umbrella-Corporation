@@ -26,7 +26,7 @@
                 <dl class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-[0.72rem] font-classified tracking-[0.2em]">
                     <div>
                         <dt class="text-[0.6rem] tracking-[0.28em] text-[#5D6E6E]">FECHA</dt>
-                        <dd class="text-[#FFFFFF]">{{ $post['date'] }}</dd>
+                        <dd class="text-[#FFFFFF]">{{ $post->published_at?->format('Y-m-d') }}</dd>
                     </div>
                     <div>
                         <dt class="text-[0.6rem] tracking-[0.28em] text-[#5D6E6E]">ID&nbsp;DOC</dt>
@@ -87,7 +87,7 @@
                             'Autorización' => $post['security'],
                             'Instalación' => $post['facility'],
                             'Estado' => 'Registrado',
-                            'Última Revisión' => $post['last_revision'],
+                            'Última Revisión' => $post->last_revision?->format('Y-m-d'),
                             'Distribución' => 'Interna',
                             'Archivo' => 'Umbrella Corporation',
                         ];

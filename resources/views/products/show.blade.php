@@ -15,7 +15,7 @@
         <div class="mt-10 grid gap-10 lg:grid-cols-12 items-start">
             {{-- VISUAL --}}
             <div class="lg:col-span-7 flex flex-col gap-6" data-animate="fade-up">
-                <div class="product-mockup aspect-[4/3] border border-[#5D6E6E]/30 lg:aspect-[16/11] scanlines">
+                <div class="product-mockup aspect-square border border-[#5D6E6E]/30 scanlines">
                     <div class="product-mockup-grid" aria-hidden="true"></div>
                     <span class="corner-mark tl" aria-hidden="true"></span>
                     <span class="corner-mark tr" aria-hidden="true"></span>
@@ -72,7 +72,7 @@
             {{-- META --}}
             <aside class="lg:col-span-5 flex flex-col gap-6" data-animate="panel">
                 <div class="flex items-center justify-between">
-                    <span class="font-classified text-[0.7rem] tracking-[0.28em] text-[#9CACAD]">{{ strtoupper($product['category']) }}</span>
+                    <span class="font-classified text-[0.7rem] tracking-[0.28em] text-[#9CACAD]">{{ strtoupper($product->category?->name ?? '') }}</span>
                     @include('partials.security-badge', ['level' => $product['status']])
                 </div>
 
@@ -170,15 +170,15 @@
                     ['label' => 'Instalación', 'value' => $product['facility']],
                     ['label' => 'Formato', 'value' => $product['format']],
                     ['label' => 'Color Visual', 'value' => $product['color_visual'] ?? null],
-                    ['label' => 'Origen', 'value' => $product['origin'] ?? null],
-                    ['label' => 'Almacenamiento', 'value' => $product['storage'] ?? null],
-                    ['label' => 'Estabilidad', 'value' => $product['stability'] ?? null],
-                    ['label' => 'Potencial de Mutación', 'value' => $product['mutation_potential'] ?? null],
-                    ['label' => 'Aplicaciones Conocidas', 'value' => $product['applications'] ?? null],
-                    ['label' => 'Distribución', 'value' => $product['distribution'] ?? null],
-                    ['label' => 'Disponibilidad', 'value' => $product['availability'] ?? null],
+                    ['label' => 'Origen', 'value' => $product->dossier['origin'] ?? null],
+                    ['label' => 'Almacenamiento', 'value' => $product->dossier['storage'] ?? null],
+                    ['label' => 'Estabilidad', 'value' => $product->dossier['stability'] ?? null],
+                    ['label' => 'Potencial de Mutación', 'value' => $product->dossier['mutation_potential'] ?? null],
+                    ['label' => 'Aplicaciones Conocidas', 'value' => $product->dossier['applications'] ?? null],
+                    ['label' => 'Distribución', 'value' => $product->dossier['distribution'] ?? null],
+                    ['label' => 'Disponibilidad', 'value' => $product->dossier['availability'] ?? null],
                     ['label' => 'Índice de Riesgo', 'value' => $product['risk_index'] ?? null],
-                    ['label' => 'Última Revisión', 'value' => $product['last_revision'] ?? null],
+                    ['label' => 'Última Revisión', 'value' => $product->last_revision?->format('Y-m-d') ?? null],
                 ], static fn ($row) => ! empty($row['value'])),
             ])
         </div>

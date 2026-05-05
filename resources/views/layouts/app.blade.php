@@ -7,7 +7,8 @@
     <meta name="robots" content="noindex,nofollow" />
     <title>@yield('title', 'Bioagentes') :: Umbrella Corporation</title>
     <meta name="description" content="@yield('description', 'Interfaz de ecommerce clasificada para archivos de investigación ficticios, equipo de contención y activos de simulación biológica.')" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='30' fill='%23ED1C24'/><circle cx='32' cy='32' r='5' fill='%23FFFFFF'/></svg>" />
+    <link rel="icon" type="image/webp" href="{{ asset('images/umbrella-logo.webp') }}" />
+    <link rel="apple-touch-icon" href="{{ asset('images/umbrella-logo.webp') }}" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen flex flex-col">

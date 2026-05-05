@@ -31,7 +31,7 @@
         <dl class="log-card__meta">
             <div>
                 <dt>FECHA</dt>
-                <dd>{{ $post['date'] }}</dd>
+                <dd>{{ $post->published_at?->format('Y-m-d') }}</dd>
             </div>
             <div>
                 <dt>ID&nbsp;DOC</dt>

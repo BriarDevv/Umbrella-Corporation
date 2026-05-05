@@ -258,7 +258,7 @@ Identificadores técnicos en mayúsculas inglesas (`CLR 04`, `UC-1968-A`, `SYNC 
 - **CSS:** Tailwind CSS v4 + variables CSS personalizadas en `resources/css/app.css`
 - **JS:** GSAP + ScrollTrigger + Lenis (smooth scroll)
 - **Iconos:** Tabler Icons (vía `blade-tabler-icons`)
-- **Datos:** `app/Support/MockData.php` (estático). Migración a Eloquent / Migrations / Seeders pendiente para cumplir consigna de backend.
+- **Datos:** Eloquent + MySQL. Tablas `categories`, `products`, `posts` creadas con Migrations y cargadas con Seeders (`Category/Product/PostSeeder` invocados desde `DatabaseSeeder`). Models en `app/Models/` con relación `Product belongsTo Category`, scopes (`Product::scopeFiltered`, `Post::scopeLatestPublished`) y trait compartido `HasSecurityLevel`.
 
 ---
 

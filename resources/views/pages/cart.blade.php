@@ -41,8 +41,8 @@
         <div class="lg:col-span-8 flex flex-col gap-4" data-animate-table>
             @foreach ($items as $entry)
                 @php $item = $entry['product']; @endphp
-                <article class="grid gap-6 md:grid-cols-12 items-center border border-[#5D6E6E]/25 bg-[#0A0A0A] p-5 hover:border-[#ED1C24] transition-colors" data-animate="table-row">
-                    <div class="md:col-span-2">
+                <article class="grid gap-5 md:grid-cols-12 items-center border border-[#5D6E6E]/25 bg-[#0A0A0A] p-5 hover:border-[#ED1C24] transition-colors" data-animate="table-row">
+                    <div class="md:col-span-2 min-w-0">
                         <figure class="cart-thumb">
                             <span class="cart-thumb-grid" aria-hidden="true"></span>
                             @if (! empty($item['image']))
@@ -63,22 +63,24 @@
                         </figure>
                     </div>
 
-                    <div class="md:col-span-6 flex flex-col gap-1">
+                    <div class="md:col-span-5 min-w-0 flex flex-col gap-1.5">
                         <span class="font-classified text-[0.7rem] tracking-[0.24em] text-[#9CACAD]">{{ $item['id_code'] }}</span>
-                        <h2 class="text-[1rem] tracking-[0.06em] text-[#FFFFFF]">
+                        <h2 class="text-[0.95rem] tracking-[0.06em] text-[#FFFFFF] break-words">
                             <a href="{{ route('products.show', $item['slug']) }}" class="transition-colors hover:text-[#ED1C24]">{{ $item['name'] }}</a>
                         </h2>
-                        @include('partials.security-badge', ['level' => $item['status']])
+                        <div class="flex">
+                            @include('partials.security-badge', ['level' => $item['status'], 'class' => 'cart-item-badge'])
+                        </div>
                     </div>
 
-                    <div class="md:col-span-2 flex flex-col gap-1">
+                    <div class="md:col-span-2 min-w-0 flex flex-col gap-1">
                         <span class="font-classified text-[0.65rem] tracking-[0.28em] text-[#5D6E6E]">CANT</span>
                         <span class="font-display text-[#FFFFFF] tracking-[0.18em] text-base">{{ str_pad((string) $entry['qty'], 2, '0', STR_PAD_LEFT) }}</span>
                     </div>
 
-                    <div class="md:col-span-2 flex flex-col gap-1 md:text-right">
+                    <div class="md:col-span-3 min-w-0 flex flex-col gap-1 md:text-right">
                         <span class="font-classified text-[0.65rem] tracking-[0.28em] text-[#5D6E6E]">SUBTOTAL</span>
-                        <span class="font-display text-[#ED1C24] tracking-[0.18em] text-base">${{ number_format($entry['subtotal'], 0, ',', '.') }}</span>
+                        <span class="font-display text-[#ED1C24] tracking-[0.16em] text-[0.95rem] whitespace-nowrap">${{ number_format($entry['subtotal'], 0, ',', '.') }}</span>
                     </div>
                 </article>
             @endforeach

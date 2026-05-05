@@ -8,7 +8,9 @@
         $riskPct = (int) round(((int) $m[1] / max(1, (int) $m[2])) * 100);
     }
     $isCritical = ($product['status_key'] ?? '') === 'critical';
-    $categoryIcon = \App\Support\MockData::categoryIcon($product['category']);
+    $categoryIcon = $product->category?->icon ?? 'biohazard';
+    $categoryName = $product->category?->name ?? '';
+    $categorySlug = $product->category?->slug ?? '';
 @endphp
 
 <article
@@ -16,7 +18,7 @@
     data-card-hover
     data-stagger-item
     data-filter-item
-    data-filter-category="{{ \Illuminate\Support\Str::slug($product['category']) }}"
+    data-filter-category="{{ $categorySlug }}"
     data-filter-clearance="{{ $product['clearance_key'] }}"
 >
     {{-- CHAMBER --}}
@@ -92,7 +94,7 @@
     {{-- META --}}
     <div class="specimen-card__meta">
         <div class="flex items-center justify-between gap-3">
-            <span class="font-classified text-[0.62rem] tracking-[0.32em] text-[#9CACAD]">{{ strtoupper($product['category']) }}</span>
+            <span class="font-classified text-[0.62rem] tracking-[0.32em] text-[#9CACAD]">{{ strtoupper($categoryName) }}</span>
             <span class="font-classified text-[0.62rem] tracking-[0.32em] text-[#ED1C24]">{{ strtoupper($product['clearance']) }}</span>
         </div>
 

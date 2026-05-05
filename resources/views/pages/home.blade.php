@@ -140,8 +140,8 @@
         </div>
 
         @php
-            $heroProduct = $featured[0] ?? null;
-            $bentoProducts = array_slice($featured, 1, 3);
+            $heroProduct = $featured->first();
+            $bentoProducts = $featured->slice(1, 3)->values();
         @endphp
 
         <div class="bento-grid" data-stagger>

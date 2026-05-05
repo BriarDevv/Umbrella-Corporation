@@ -1,66 +1,11 @@
 Escuela de Arte Multimedial Da Vinci
-CARRERA: [completar]
+CARRERA: Diseño y desarrollo web
 MATERIA: Portales y Comercio Electronico
 TRABAJO PRACTICO: Primer Parcial
 PROFESOR: Carlos Ferrer
-ALUMNO/S: [apellido, nombre]
-CUATRIMESTRE: [completar]
-ANIO: [completar]
-TURNO: [completar]
-COMISION: [completar]
+ALUMNO/S: Garcia, Mateo
+CUATRIMESTRE: 4to
+ANIO: 2026
+TURNO: Mañana
+COMISION: DWM4AP
 
-PROYECTO: Umbrella Research Division
-TEMA: Ecommerce ficticio (universo Resident Evil) para replicas de coleccion,
-       dossiers narrativos, equipamiento de contencion ficticio y archivos clasificados.
-
-NOTA NARRATIVA: El sitio es una pieza de ficcion academica. No vende ni hace
-referencia a sustancias, armas ni actividades reales.
-
-==================================================
-PASOS PARA CORRER EL PROYECTO
-==================================================
-
-1. composer install
-2. npm install
-3. Copiar .env.example a .env
-4. php artisan key:generate
-5. npm run build      (o "npm run dev" para hot reload)
-6. php artisan serve
-
-Visitar http://localhost:8000 (o el puerto que indique artisan serve).
-
-==================================================
-RUTAS DISPONIBLES
-==================================================
-
-/                       Home
-/products               Catalogo (Classified Catalog)
-/products/{slug}        Detalle de producto
-/blog                   Research Logs
-/blog/{slug}            Detalle de articulo
-/security-levels        Niveles de seguridad
-/about                  Pagina institucional
-/contact                Formulario Request Clearance
-/cart                   Pending Authorization Cart
-
-==================================================
-STACK TECNOLOGICO
-==================================================
-
-- Laravel 13
-- Blade
-- Tailwind CSS v4
-- GSAP 3 + ScrollTrigger
-- Lenis (smooth scroll)
-- Vite
-- Tabler Icons (secondnetwork/blade-tabler-icons)
-
-==================================================
-NOTA IMPORTANTE SOBRE LA ENTREGA DEL PARCIAL
-==================================================
-
-Este build entrega el FRONTEND completo del proyecto.
-La capa de base de datos (migrations + seeders) para users + blog/news
-debe sumarse antes de la entrega final del parcial. Los datos mock
-estan organizados en app/Support/MockData.php para migrar facilmente
-a Eloquent + seeders cuando corresponda.

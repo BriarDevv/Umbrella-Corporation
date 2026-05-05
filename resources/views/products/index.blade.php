@@ -120,9 +120,8 @@
                         >
                             <option value="">Todas las categorías</option>
                             @foreach ($categories as $category)
-                                @php $catSlug = \Illuminate\Support\Str::slug($category['name']); @endphp
-                                <option value="{{ $catSlug }}" @selected($selectedCategory === $catSlug)>
-                                    {{ $category['name'] }}
+                                <option value="{{ $category->slug }}" @selected($selectedCategory === $category->slug)>
+                                    {{ $category->name }}
                                 </option>
                             @endforeach
                         </select>

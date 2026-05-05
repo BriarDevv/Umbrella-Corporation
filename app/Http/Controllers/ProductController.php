@@ -4,68 +4,68 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Support\MockData;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProductController extends Controller
 {
+    /**
+     * Filtros de autorización disponibles. Quedan inline porque son una
+     * lista cerrada del design system, no un dato del catálogo.
+     *
+     * @var array<int, array<string, string>>
+     */
+    private const CLEARANCE_FILTERS = [
+        ['key' => 'restricted', 'label' => 'RESTRINGIDO'],
+        ['key' => 'critical', 'label' => 'CRÍTICO'],
+        ['key' => 'classified', 'label' => 'CLASIFICADO'],
+    ];
+
     public function index(Request $request): View
     {
         $categorySlug = trim((string) $request->query('categoria', ''));
         $clearanceKey = trim((string) $request->query('autorizacion', ''));
 
-        $products = $this->filterProducts(
-            MockData::products(),
-            $categorySlug,
-            $clearanceKey,
-        );
+        $products = Product::with('category')
+            ->filtered($categorySlug ?: null, $clearanceKey ?: null)
+            ->orderBy('id')
+            ->get();
 
         return view('products.index', [
             'products' => $products,
-            'categories' => MockData::categories(),
-            'clearanceFilters' => MockData::clearanceFilters(),
+            'categories' => Category::orderBy('id')->get(),
+            'clearanceFilters' => self::CLEARANCE_FILTERS,
             'selectedCategory' => $categorySlug,
             'selectedClearance' => $clearanceKey,
-            'totalAll' => count(MockData::products()),
+            'totalAll' => Product::count(),
         ]);
     }
 
-    public function show(string $slug): View
+    public function show(Product $product): View
     {
-        $product = MockData::findProduct($slug);
+        $product->load('category');
 
-        if ($product === null) {
-            throw new NotFoundHttpException();
+        $related = Product::with('category')
+            ->where('category_id', $product->category_id)
+            ->where('id', '!=', $product->id)
+            ->take(3)
+            ->get();
+
+        if ($related->count() < 3) {
+            $extra = Product::with('category')
+                ->where('id', '!=', $product->id)
+                ->whereNotIn('id', $related->pluck('id'))
+                ->take(3 - $related->count())
+                ->get();
+
+            $related = $related->concat($extra);
         }
 
         return view('products.show', [
             'product' => $product,
-            'related' => MockData::relatedProducts($slug, 3),
+            'related' => $related,
         ]);
-    }
-
-    /**
-     * @param array<int, array<string, mixed>> $products
-     * @return array<int, array<string, mixed>>
-     */
-    private function filterProducts(array $products, string $categorySlug, string $clearanceKey): array
-    {
-        return array_values(array_filter(
-            $products,
-            static function (array $product) use ($categorySlug, $clearanceKey): bool {
-                if ($categorySlug !== '' && Str::slug((string) $product['category']) !== $categorySlug) {
-                    return false;
-                }
-
-                if ($clearanceKey !== '' && ($product['clearance_key'] ?? '') !== $clearanceKey) {
-                    return false;
-                }
-
-                return true;
-            }
-        ));
     }
 }

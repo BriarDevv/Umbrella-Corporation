@@ -35,14 +35,37 @@
 
         <span class="hairline-red block mt-10 mb-10" data-animate="line"></span>
 
+        @if (session('contact_status') === 'received')
+            <div class="access-doc__alert access-doc__alert--success" role="status" data-animate="fade-up">
+                <x-tabler-shield-check class="size-5" aria-hidden="true" />
+                <p>
+                    Solicitud recibida{{ session('contact_full_name') ? ', ' . session('contact_full_name') : '' }}. Tu credencial fue registrada en el archivo y será revisada por la División de Asuntos Internos.
+                </p>
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="access-doc__alert access-doc__alert--error" role="alert" data-animate="fade-up">
+                <x-tabler-alert-triangle class="size-5" aria-hidden="true" />
+                <div>
+                    <p class="font-classified tracking-[0.2em] uppercase text-xs mb-1">Solicitud rechazada — corregí los siguientes campos:</p>
+                    <ul class="list-disc pl-5 space-y-0.5">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        @endif
+
         <form
-            action="#"
+            action="{{ route('contact.submit') }}"
             method="POST"
             class="access-doc"
             aria-labelledby="contact-heading"
             data-animate="fade-up"
-            onsubmit="event.preventDefault();"
         >
+            @csrf
             <span class="corner-mark tl" aria-hidden="true"></span>
             <span class="corner-mark tr" aria-hidden="true"></span>
             <span class="corner-mark bl" aria-hidden="true"></span>
@@ -73,13 +96,15 @@
 
                 <div class="access-doc__grid">
                     <div class="flex flex-col">
-                        <label for="full-name" class="input-label">Nombre Completo</label>
-                        <input type="text" id="full-name" name="full-name" class="input-control" placeholder="J. Wesker" autocomplete="name" required />
+                        <label for="full_name" class="input-label">Nombre Completo</label>
+                        <input type="text" id="full_name" name="full_name" class="input-control @error('full_name') is-invalid @enderror" placeholder="J. Wesker" autocomplete="name" value="{{ old('full_name') }}" required />
+                        @error('full_name') <p class="input-error">{{ $message }}</p> @enderror
                     </div>
 
                     <div class="flex flex-col">
                         <label for="email" class="input-label">Correo Electrónico</label>
-                        <input type="email" id="email" name="email" class="input-control" placeholder="agente@umbrella.corp" autocomplete="email" required />
+                        <input type="email" id="email" name="email" class="input-control @error('email') is-invalid @enderror" placeholder="agente@umbrella.corp" autocomplete="email" value="{{ old('email') }}" required />
+                        @error('email') <p class="input-error">{{ $message }}</p> @enderror
                     </div>
                 </div>
             </fieldset>
@@ -95,25 +120,24 @@
                 <div class="access-doc__grid">
                     <div class="flex flex-col">
                         <label for="department" class="input-label">Departamento</label>
-                        <select id="department" name="department" class="input-control" required>
+                        <select id="department" name="department" class="input-control @error('department') is-invalid @enderror" required>
                             <option value="">Seleccione departamento</option>
-                            <option>Bioingeniería</option>
-                            <option>Investigación Farmacéutica</option>
-                            <option>Sistemas de Contención</option>
-                            <option>Seguridad Privada</option>
-                            <option>Supervisión Corporativa</option>
+                            @foreach (\App\Http\Requests\ContactRequest::DEPARTMENTS as $dept)
+                                <option @selected(old('department') === $dept)>{{ $dept }}</option>
+                            @endforeach
                         </select>
+                        @error('department') <p class="input-error">{{ $message }}</p> @enderror
                     </div>
 
                     <div class="flex flex-col">
                         <label for="clearance" class="input-label">Nivel Solicitado</label>
-                        <select id="clearance" name="clearance" class="input-control" required>
+                        <select id="clearance" name="clearance" class="input-control @error('clearance') is-invalid @enderror" required>
                             <option value="">Seleccione nivel</option>
-                            <option>Nivel 3 — Nominal</option>
-                            <option>Nivel 4 — Restringido</option>
-                            <option>Nivel 5 — Crítico / Biohazard</option>
-                            <option>Nivel 5 — Clasificado</option>
+                            @foreach (\App\Http\Requests\ContactRequest::CLEARANCE_LEVELS as $level)
+                                <option @selected(old('clearance') === $level)>{{ $level }}</option>
+                            @endforeach
                         </select>
+                        @error('clearance') <p class="input-error">{{ $message }}</p> @enderror
                     </div>
                 </div>
             </fieldset>
@@ -128,16 +152,18 @@
 
                 <div class="flex flex-col">
                     <label for="reason" class="input-label">Motivo del Acceso</label>
-                    <textarea id="reason" name="reason" rows="5" class="input-control" placeholder="Proporcione una justificación narrativa para el acceso al archivo. Solo contexto académico y ficticio."></textarea>
+                    <textarea id="reason" name="reason" rows="5" class="input-control @error('reason') is-invalid @enderror" placeholder="Proporcione una justificación narrativa para el acceso al archivo. Solo contexto académico y ficticio.">{{ old('reason') }}</textarea>
                     <p class="input-helper">Todas las solicitudes se revisan manualmente. Evite información personal sensible.</p>
+                    @error('reason') <p class="input-error">{{ $message }}</p> @enderror
                 </div>
 
                 <label for="agree" class="access-doc__agree">
-                    <input type="checkbox" id="agree" name="agree" class="checkbox-control mt-1" required />
+                    <input type="checkbox" id="agree" name="agree" value="1" class="checkbox-control mt-1" {{ old('agree') ? 'checked' : '' }} required />
                     <span>
                         Acepto el protocolo interno de Umbrella y reconozco que esta solicitud forma parte de un proyecto académico ficticio de ecommerce.
                     </span>
                 </label>
+                @error('agree') <p class="input-error">{{ $message }}</p> @enderror
             </fieldset>
 
             {{-- DOC FOOTER --}}
@@ -162,7 +188,7 @@
             </footer>
 
             <p class="access-doc__disclaimer">
-                Este formulario se presenta con fines visuales. No se transmiten datos. // FIN&nbsp;DEL&nbsp;DOCUMENTO
+                Las solicitudes se validan en el servidor pero no se almacenan ni se reenvían. // FIN&nbsp;DEL&nbsp;DOCUMENTO
             </p>
         </form>
     </div>
