@@ -1,14 +1,14 @@
 @props([
     'badgeId' => 'UC-1968-A',
     'level' => '4',
-    'facility' => 'Raccoon Division',
-    'status' => 'Authorized Personnel Only',
+    'facility' => 'División Raccoon',
+    'status' => 'Solo Personal Autorizado',
 ])
 
 <aside class="clearance-panel" data-animate="panel">
     <div class="clearance-panel-header">
-        <span class="font-display text-[0.7rem] tracking-[0.32em] text-[#FFFFFF]">Property of Umbrella</span>
-        <span class="badge badge-classified">CLASSIFIED</span>
+        <span class="font-display text-[0.7rem] tracking-[0.32em] text-[#FFFFFF]">Propiedad de Umbrella</span>
+        <span class="badge badge-classified">CLASIFICADO</span>
     </div>
 
     <dl class="grid gap-3 text-sm">
@@ -17,15 +17,15 @@
             <dd class="font-classified text-[#FFFFFF] text-base tracking-[0.18em]">{{ $badgeId }}</dd>
         </div>
         <div class="flex items-center justify-between gap-4">
-            <dt class="font-classified text-[0.7rem] tracking-[0.24em] text-[#9CACAD]">Clearance</dt>
-            <dd class="font-display text-[#ED1C24] tracking-[0.24em]">Level {{ $level }}</dd>
+            <dt class="font-classified text-[0.7rem] tracking-[0.24em] text-[#9CACAD]">Autorización</dt>
+            <dd class="font-display text-[#ED1C24] tracking-[0.24em]">Nivel {{ $level }}</dd>
         </div>
         <div class="flex items-center justify-between gap-4">
-            <dt class="font-classified text-[0.7rem] tracking-[0.24em] text-[#9CACAD]">Facility</dt>
+            <dt class="font-classified text-[0.7rem] tracking-[0.24em] text-[#9CACAD]">Instalación</dt>
             <dd class="text-[#FFFFFF]">{{ $facility }}</dd>
         </div>
         <div class="flex items-center justify-between gap-4">
-            <dt class="font-classified text-[0.7rem] tracking-[0.24em] text-[#9CACAD]">Status</dt>
+            <dt class="font-classified text-[0.7rem] tracking-[0.24em] text-[#9CACAD]">Estado</dt>
             <dd class="text-[#FFFFFF]">{{ $status }}</dd>
         </div>
     </dl>
@@ -38,8 +38,8 @@
                     <span style="width: {{ $weight }}px;"></span>
                 @endforeach
             </div>
-            <span class="font-classified text-[0.65rem] tracking-[0.32em] text-[#9CACAD]">BADGE</span>
+            <span class="font-classified text-[0.65rem] tracking-[0.32em] text-[#9CACAD]">CREDENCIAL</span>
         </div>
-        <p class="mt-3 font-classified text-[0.7rem] tracking-[0.32em] text-[#9CACAD]">INTERNAL USE ONLY</p>
+        <p class="mt-3 font-classified text-[0.7rem] tracking-[0.32em] text-[#9CACAD]">SOLO USO INTERNO</p>
     </div>
 </aside>

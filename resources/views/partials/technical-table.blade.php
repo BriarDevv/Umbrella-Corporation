@@ -10,8 +10,8 @@
         @endif
         <thead>
             <tr>
-                <th scope="col">Field</th>
-                <th scope="col">Value</th>
+                <th scope="col">Campo</th>
+                <th scope="col">Valor</th>
             </tr>
         </thead>
         <tbody>
