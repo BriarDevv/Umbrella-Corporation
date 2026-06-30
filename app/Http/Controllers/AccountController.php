@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
@@ -15,7 +17,8 @@ class AccountController extends Controller
      */
     public function index(): View
     {
-        $user = auth()->user();
+        /** @var User $user */
+        $user = Auth::user();
         $user->load('subscriptions.product');
 
         return view('account.dashboard', [

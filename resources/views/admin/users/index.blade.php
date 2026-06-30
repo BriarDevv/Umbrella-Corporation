@@ -29,7 +29,7 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Correo</th>
                             <th scope="col">Rol</th>
-                            <th scope="col">Servicios</th>
+                            <th scope="col">Adquisiciones</th>
                             <th scope="col">Alta</th>
                             <th scope="col" class="text-right">Detalle</th>
                         </tr>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Mi Credencial')
-@section('description', 'Panel personal de acceso: credencial y servicios contratados en el archivo de Umbrella Corporation.')
+@section('description', 'Panel personal de acceso: credencial y adquisiciones en el catálogo de Umbrella Corporation.')
 
 @php
     // el usuario lo manda AccountController con las subscriptions ya cargadas
@@ -26,7 +26,7 @@
             <span class="access-hero__eyebrow">Acceso de Personal · Sesión Activa</span>
             <h1 id="account-heading" class="access-hero__title">Mi<br />Credencial</h1>
             <p class="access-hero__desc">
-                Bienvenido, {{ $u->name }}. Desde aquí podés consultar tu credencial y los servicios contratados en el archivo.
+                Bienvenido, {{ $u->name }}. Desde aquí podés consultar tu credencial y tus adquisiciones en el catálogo.
             </p>
         </div>
 
@@ -59,7 +59,7 @@
                         <dd class="admin-deflist__dd">{{ $u->role === 'admin' ? 'Administrador' : 'Usuario común' }}</dd>
                     </div>
                     <div class="admin-deflist__row">
-                        <dt class="admin-deflist__dt">Servicios activos</dt>
+                        <dt class="admin-deflist__dt">Adquisiciones</dt>
                         <dd class="admin-deflist__dd font-classified">{{ $u->subscriptions->count() }}</dd>
                     </div>
                     <div class="admin-deflist__row">
@@ -82,10 +82,10 @@
                 </form>
             </section>
 
-            {{-- servicios contratados --}}
+            {{-- adquisiciones --}}
             <section class="technical-panel">
                 <div class="flex items-center justify-between gap-3 mb-5">
-                    <h2 class="font-display text-[0.95rem] tracking-[0.2em] uppercase text-white">Servicios Contratados</h2>
+                    <h2 class="font-display text-[0.95rem] tracking-[0.2em] uppercase text-white">Adquisiciones</h2>
                     <span class="font-classified text-[0.6rem] tracking-[0.28em] uppercase text-[#5D6E6E]">
                         {{ $u->subscriptions->count() }} {{ $u->subscriptions->count() === 1 ? 'activo' : 'activos' }}
                     </span>
@@ -121,8 +121,8 @@
                     </div>
                 @else
                     <div class="catalog-empty">
-                        <p class="catalog-empty__title">Sin servicios activos</p>
-                        <p class="catalog-empty__desc">Todavía no contrataste ningún servicio del archivo. Explorá el catálogo para solicitar acceso a un activo.</p>
+                        <p class="catalog-empty__title">Sin adquisiciones</p>
+                        <p class="catalog-empty__desc">Todavía no hiciste ninguna adquisición. Explorá el catálogo para conseguir tu primer activo.</p>
                         <a href="{{ route('products.index') }}" class="btn btn-secondary">
                             <x-tabler-flask class="size-4" aria-hidden="true" />
                             Ver Catálogo

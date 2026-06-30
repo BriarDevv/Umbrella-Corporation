@@ -48,7 +48,7 @@
                         <dd class="admin-deflist__dd">{{ $user->role === 'admin' ? 'Administrador' : 'Usuario común' }}</dd>
                     </div>
                     <div class="admin-deflist__row">
-                        <dt class="admin-deflist__dt">Servicios contratados</dt>
+                        <dt class="admin-deflist__dt">Adquisiciones</dt>
                         <dd class="admin-deflist__dd font-classified">{{ $user->subscriptions->count() }}</dd>
                     </div>
                     <div class="admin-deflist__row">
@@ -68,10 +68,10 @@
             </div>
         </section>
 
-        {{-- servicios contratados y compras --}}
+        {{-- adquisiciones --}}
         <section class="admin-panel">
             <header class="admin-panel__head">
-                <h2 class="admin-panel__title">Servicio Contratado · Adquisiciones</h2>
+                <h2 class="admin-panel__title">Adquisiciones</h2>
                 <span class="font-classified text-[0.62rem] tracking-[0.28em] uppercase text-[#5D6E6E]">
                     {{ $user->subscriptions->count() }} {{ $user->subscriptions->count() === 1 ? 'registro' : 'registros' }}
                 </span>
@@ -111,8 +111,8 @@
                 @else
                     <div class="admin-empty">
                         <x-tabler-package-off class="size-8 text-[#5D6E6E]" aria-hidden="true" />
-                        <p class="admin-empty__title">Sin servicios contratados</p>
-                        <p class="text-sm text-[#9CACAD]">Este usuario aún no registra adquisiciones en el archivo.</p>
+                        <p class="admin-empty__title">Sin adquisiciones</p>
+                        <p class="text-sm text-[#9CACAD]">Este usuario todavía no registra adquisiciones.</p>
                     </div>
                 @endif
             </div>

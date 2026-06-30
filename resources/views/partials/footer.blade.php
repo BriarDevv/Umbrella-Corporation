@@ -56,7 +56,13 @@
     <div class="border-t border-[#5D6E6E]/20">
         <div class="container-tech flex flex-col items-start justify-between gap-3 py-5 text-[0.72rem] font-classified tracking-[0.28em] text-[#5D6E6E] sm:flex-row sm:items-center">
             <p>Propiedad de Umbrella Corporation · Reproducción no autorizada estrictamente prohibida.</p>
-            <p>{{ date('Y') }} · Solo Uso Interno</p>
+            <div class="flex items-center gap-4">
+                <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center gap-1.5 border border-[#5D6E6E]/40 px-2.5 py-1.5 text-[#9CACAD] transition-colors hover:border-[#ED1C24] hover:text-[#ED1C24]" title="Acceso interno al panel">
+                    <x-tabler-shield-lock class="size-3.5" aria-hidden="true" />
+                    Acceso Interno
+                </a>
+                <p>{{ date('Y') }} · Solo Uso Interno</p>
+            </div>
         </div>
     </div>
 </footer>
