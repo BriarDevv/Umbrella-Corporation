@@ -104,6 +104,10 @@
                     <x-tabler-square-plus class="size-4" aria-hidden="true" />
                     Crear Entrada de Bitácora
                 </a>
+                <a href="{{ route('admin.products.create') }}" class="btn btn-secondary btn-block">
+                    <x-tabler-virus class="size-4" aria-hidden="true" />
+                    Cargar Bioagente
+                </a>
                 <a href="{{ route('admin.users.index') }}" class="btn btn-secondary btn-block">
                     <x-tabler-users class="size-4" aria-hidden="true" />
                     Gestionar Personal

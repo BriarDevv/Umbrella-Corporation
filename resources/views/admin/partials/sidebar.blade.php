@@ -26,6 +26,11 @@
             Bitácora
         </a>
 
+        <a href="{{ route('admin.products.index') }}" @class(['admin-nav__item', 'is-active' => request()->routeIs('admin.products.*')])>
+            <x-tabler-virus class="size-[1.15rem]" aria-hidden="true" />
+            Catálogo
+        </a>
+
         <a href="{{ route('admin.users.index') }}" @class(['admin-nav__item', 'is-active' => request()->routeIs('admin.users.*')])>
             <x-tabler-users class="size-[1.15rem]" aria-hidden="true" />
             Personal

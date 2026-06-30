@@ -7,6 +7,7 @@
 
 @php
     $scientistPhotoExists = file_exists(public_path('images/team/mateo-spencer.webp'));
+    $scientist2PhotoExists = file_exists(public_path('images/team/facundo-alvarez.webp'));
 @endphp
 
 {{-- el hero con el director cientifico --}}
@@ -103,6 +104,86 @@
                     <p>"La disciplina genera unidad. La unidad, poder. El poder es vida."</p>
                 </blockquote>
             </div>
+        </article>
+    </div>
+</section>
+
+{{-- segundo cientifico: misma tarjeta pero al reves, la foto va a la derecha y el texto a la izquierda --}}
+<section class="section-shell pt-2 pb-16" aria-labelledby="scientist-2-heading">
+    <div class="container-tech">
+        <article class="scientist-card scientist-card--reverse" data-animate="panel">
+            {{-- a la izquierda la bio --}}
+            <div class="scientist-card__bio">
+                <div class="flex items-center justify-between gap-3">
+                    <span class="font-classified text-[0.7rem] tracking-[0.32em] text-[#9CACAD]">DIVISIÓN&nbsp;RACCOON</span>
+                    <span class="badge badge-executive">
+                        <x-tabler-crown class="size-3.5" aria-hidden="true" />
+                        BIOINGENIERO ADJUNTO
+                    </span>
+                </div>
+
+                <h2 id="scientist-2-heading" class="scientist-card__name">Facundo Marcus</h2>
+                <p class="scientist-card__role">// DIRECTOR CIENTÍFICO · BIOINGENIERÍA</p>
+
+                <p class="scientist-card__intro">
+                    Tres décadas dirigiendo programas de selección biológica avanzada dentro de Umbrella Corporation. Responsable de la continuidad operativa entre los archivos clásicos y los nuevos pilares de investigación.
+                </p>
+
+                <p class="scientist-card__intro">
+                    Bajo su supervisión se consolidaron los protocolos de contención que rigen actualmente todo el inventario biológico del archivo, incluyendo los desarrollos derivados del Progenitor.
+                </p>
+
+                <dl class="scientist-card__data">
+                    <div>
+                        <dt>ID&nbsp;PERSONAL</dt>
+                        <dd>UC-1968-B</dd>
+                    </div>
+                    <div>
+                        <dt>AUTORIZACIÓN</dt>
+                        <dd class="text-[#ED1C24]">Nivel&nbsp;05</dd>
+                    </div>
+                    <div>
+                        <dt>INSTALACIÓN</dt>
+                        <dd>NEST · Arklay</dd>
+                    </div>
+                    <div>
+                        <dt>ESTADO</dt>
+                        <dd>
+                            <span class="status-dot status-dot-nominal" aria-hidden="true"></span>
+                            Activo
+                        </dd>
+                    </div>
+                </dl>
+
+                <blockquote class="scientist-card__quote">
+                    <p>"La disciplina genera unidad. La unidad, poder. El poder es vida."</p>
+                </blockquote>
+            </div>
+
+            {{-- a la derecha la foto --}}
+            <figure class="scientist-card__photo">
+                <span class="corner-mark tl" aria-hidden="true"></span>
+                <span class="corner-mark tr" aria-hidden="true"></span>
+                <span class="corner-mark bl" aria-hidden="true"></span>
+                <span class="corner-mark br" aria-hidden="true"></span>
+
+                @if ($scientist2PhotoExists)
+                    <img
+                        src="{{ asset('images/team/facundo-alvarez.webp') }}"
+                        alt="Facundo Marcus — Director Científico"
+                        class="scientist-card__img"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                @else
+                    <div class="scientist-card__placeholder" aria-hidden="true">
+                        <x-tabler-user-circle class="size-20 text-[#5D6E6E]" />
+                        <p class="font-classified text-[0.65rem] tracking-[0.32em] text-[#5D6E6E] mt-3 text-center">
+                            ARCHIVO FOTOGRÁFICO<br />PENDIENTE
+                        </p>
+                    </div>
+                @endif
+            </figure>
         </article>
     </div>
 </section>

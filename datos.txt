@@ -3,7 +3,7 @@ CARRERA: Diseño y desarrollo web
 MATERIA: Portales y Comercio Electronico
 TRABAJO PRACTICO: Segundo Parcial
 PROFESOR: Carlos Ferrer
-ALUMNO/S: Garcia, Mateo
+ALUMNO/S: Garcia, Mateo - Alvarez, Facundo
 CUATRIMESTRE: 4to
 ANIO: 2026
 TURNO: Mañana

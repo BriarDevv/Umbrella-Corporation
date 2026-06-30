@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
@@ -50,6 +51,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::get('/bitacora/{post}/editar', [AdminPostController::class, 'edit'])->name('posts.edit');
     Route::put('/bitacora/{post}', [AdminPostController::class, 'update'])->name('posts.update');
     Route::delete('/bitacora/{post}', [AdminPostController::class, 'destroy'])->name('posts.destroy');
+
+    // ABM del catalogo de bioagentes
+    Route::get('/catalogo', [AdminProductController::class, 'index'])->name('products.index');
+    Route::get('/catalogo/nuevo', [AdminProductController::class, 'create'])->name('products.create');
+    Route::post('/catalogo', [AdminProductController::class, 'store'])->name('products.store');
+    Route::get('/catalogo/{product}/editar', [AdminProductController::class, 'edit'])->name('products.edit');
+    Route::put('/catalogo/{product}', [AdminProductController::class, 'update'])->name('products.update');
+    Route::delete('/catalogo/{product}', [AdminProductController::class, 'destroy'])->name('products.destroy');
 
     // personal
     Route::get('/personal', [AdminUserController::class, 'index'])->name('users.index');
