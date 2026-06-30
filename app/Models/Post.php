@@ -21,6 +21,7 @@ class Post extends Model
         'author',
         'document_id',
         'icon',
+        'image',
         'excerpt',
         'body',
         'facility',
@@ -38,11 +39,24 @@ class Post extends Model
         return 'slug';
     }
 
+    /**
+     * ordena los posts del mas nuevo al mas viejo
+     *
+     * @param  Builder  $query
+     * @return Builder
+     */
     public function scopeLatestPublished(Builder $query): Builder
     {
         return $query->orderByDesc('published_at');
     }
 
+    /**
+     * filtra por categoria. si viene vacia no filtra nada
+     *
+     * @param  Builder      $query
+     * @param  string|null  $category
+     * @return Builder
+     */
     public function scopeByCategory(Builder $query, ?string $category): Builder
     {
         if ($category === null || $category === '') {

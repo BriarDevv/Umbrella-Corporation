@@ -13,7 +13,7 @@
         ]])
 
         <div class="mt-10 grid gap-10 lg:grid-cols-12 items-start">
-            {{-- VISUAL --}}
+            {{-- la parte visual --}}
             <div class="lg:col-span-7 flex flex-col gap-6" data-animate="fade-up">
                 <div class="product-mockup aspect-square border border-[#5D6E6E]/30 scanlines">
                     <div class="product-mockup-grid" aria-hidden="true"></div>
@@ -69,7 +69,7 @@
                 </div>
             </div>
 
-            {{-- META --}}
+            {{-- los datos del item --}}
             <aside class="lg:col-span-5 flex flex-col gap-6" data-animate="panel">
                 <div class="flex items-center justify-between">
                     <span class="font-classified text-[0.7rem] tracking-[0.28em] text-[#9CACAD]">{{ strtoupper($product->category?->name ?? '') }}</span>
@@ -133,7 +133,7 @@
                     </p>
                 </div>
 
-                {{-- CONTAINMENT NOTICE --}}
+                {{-- aviso de contencion --}}
                 <div class="clearance-panel">
                     <div class="clearance-panel-header">
                         <span class="font-display text-[0.7rem] tracking-[0.32em] text-[#FFFFFF]">Aviso de Contención</span>
@@ -148,7 +148,7 @@
     </div>
 </section>
 
-{{-- TECHNICAL SPEC --}}
+{{-- ficha tecnica --}}
 <section class="section-shell py-16 bg-[#0A0A0A] border-y border-[#5D6E6E]/20" aria-labelledby="spec-heading">
     <div class="container-tech grid gap-12 lg:grid-cols-12">
         <div class="lg:col-span-4 flex flex-col gap-4">
@@ -185,7 +185,7 @@
     </div>
 </section>
 
-{{-- RELATED --}}
+{{-- relacionados --}}
 <section class="section-shell pb-24" aria-labelledby="related-heading">
     <div class="container-tech">
         <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">

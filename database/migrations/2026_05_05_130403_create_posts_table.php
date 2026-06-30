@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('author');
             $table->string('document_id')->unique();
             $table->string('icon');
+            $table->string('image')->nullable();
             $table->string('excerpt');
             $table->text('body');
             $table->string('facility');

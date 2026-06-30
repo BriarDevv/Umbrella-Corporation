@@ -8,6 +8,7 @@ use App\Models\Concerns\HasSecurityLevel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class Product extends Model
@@ -46,12 +47,16 @@ class Product extends Model
     ];
 
     /**
-     * El trait HasSecurityLevel usa esta columna como llave de autorización.
-     * Para productos el "nivel de seguridad" se expone como clearance_key,
-     * mientras que el status_key indica el estado operativo.
+     * el trait HasSecurityLevel usa esta columna como llave.
+     * en productos el nivel va en clearance_key y el status_key es el estado operativo.
      */
     protected string $securityKey = 'clearance_key';
 
+    /**
+     * la categoria a la que pertenece el producto
+     *
+     * @return BelongsTo
+     */
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
@@ -62,6 +67,14 @@ class Product extends Model
         return 'slug';
     }
 
+    /**
+     * filtra el catalogo por categoria y/o por clearance. los nulos los ignora
+     *
+     * @param  Builder      $query
+     * @param  string|null  $categorySlug
+     * @param  string|null  $clearanceKey
+     * @return Builder
+     */
     public function scopeFiltered(Builder $query, ?string $categorySlug, ?string $clearanceKey): Builder
     {
         return $query
@@ -72,6 +85,11 @@ class Product extends Model
             ->when($clearanceKey, fn (Builder $q, string $key) => $q->where('clearance_key', $key));
     }
 
+    /**
+     * pasa el risk_index tipo "96/100" a porcentaje
+     *
+     * @return int
+     */
     public function getRiskPercentageAttribute(): int
     {
         if (preg_match('/(\d+)\s*\/\s*(\d+)/', (string) $this->risk_index, $m) === 1) {
@@ -81,8 +99,23 @@ class Product extends Model
         return 0;
     }
 
+    /**
+     * el slug de la categoria, y si no hay lo armo con el nombre
+     *
+     * @return string
+     */
     public function getCategorySlugAttribute(): string
     {
         return $this->category?->slug ?? Str::slug((string) $this->category?->name);
+    }
+
+    /**
+     * las suscripciones contratadas sobre este producto
+     *
+     * @return HasMany
+     */
+    public function subscriptions(): HasMany
+    {
+        return $this->hasMany(Subscription::class);
     }
 }

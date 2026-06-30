@@ -21,7 +21,7 @@
     data-filter-category="{{ $categorySlug }}"
     data-filter-clearance="{{ $product['clearance_key'] }}"
 >
-    {{-- CHAMBER --}}
+    {{-- la camara --}}
     <div class="specimen-chamber">
         <div class="specimen-chamber__hex" aria-hidden="true"></div>
         <div class="specimen-chamber__rib specimen-chamber__rib--left" aria-hidden="true"></div>
@@ -34,7 +34,7 @@
         <span class="corner-mark bl" aria-hidden="true"></span>
         <span class="corner-mark br" aria-hidden="true"></span>
 
-        {{-- TOP CAP --}}
+        {{-- la tapa de arriba --}}
         <div class="specimen-cap">
             <span class="specimen-cap__id">
                 <x-dynamic-component
@@ -47,7 +47,7 @@
             @include('partials.security-badge', ['level' => $product['status']])
         </div>
 
-        {{-- IMAGE --}}
+        {{-- la imagen --}}
         <figure class="specimen-chamber__figure" aria-hidden="true">
             <span class="specimen-chamber__halo"></span>
             @if (! empty($product['image']))
@@ -66,7 +66,7 @@
             @endif
         </figure>
 
-        {{-- READOUT --}}
+        {{-- datos de lectura --}}
         <div class="specimen-readout">
             <div class="specimen-readout__col">
                 <span class="specimen-readout__label">INSTALACIÓN</span>
@@ -81,7 +81,7 @@
             </div>
         </div>
 
-        {{-- RISK BAR --}}
+        {{-- barra de riesgo --}}
         <div class="specimen-risk" aria-label="Índice de riesgo {{ $riskPct }} por ciento">
             <span class="specimen-risk__label">RIESGO</span>
             <span class="specimen-risk__track" aria-hidden="true">
@@ -91,7 +91,7 @@
         </div>
     </div>
 
-    {{-- META --}}
+    {{-- los datos del item --}}
     <div class="specimen-card__meta">
         <div class="flex items-center justify-between gap-3">
             <span class="font-classified text-[0.62rem] tracking-[0.32em] text-[#9CACAD]">{{ strtoupper($categoryName) }}</span>

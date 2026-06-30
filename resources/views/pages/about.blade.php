@@ -9,7 +9,7 @@
     $scientistPhotoExists = file_exists(public_path('images/team/mateo-spencer.webp'));
 @endphp
 
-{{-- HERO + DIRECTOR CIENTÍFICO --}}
+{{-- el hero con el director cientifico --}}
 <section class="section-shell catalog-hero pt-12 pb-16" aria-labelledby="scientist-heading">
     <div class="catalog-hero__bg" aria-hidden="true">
         <img
@@ -30,7 +30,7 @@
         ]])
 
         <article class="scientist-card mt-8" data-animate="panel">
-            {{-- LEFT — photo --}}
+            {{-- a la izquierda la foto --}}
             <figure class="scientist-card__photo">
                 <span class="corner-mark tl" aria-hidden="true"></span>
                 <span class="corner-mark tr" aria-hidden="true"></span>
@@ -56,7 +56,7 @@
                 @endif
             </figure>
 
-            {{-- RIGHT — bio --}}
+            {{-- a la derecha la bio --}}
             <div class="scientist-card__bio">
                 <div class="flex items-center justify-between gap-3">
                     <span class="font-classified text-[0.7rem] tracking-[0.32em] text-[#9CACAD]">DIVISIÓN&nbsp;RACCOON</span>
@@ -107,7 +107,7 @@
     </div>
 </section>
 
-{{-- LA CORPORACIÓN — descripción + operaciones actuales --}}
+{{-- la corporacion: descripcion y las operaciones de ahora --}}
 <section class="section-shell py-20 bg-[#0A0A0A] border-y border-[#5D6E6E]/20" aria-labelledby="overview-heading">
     <div class="container-tech grid gap-12 lg:grid-cols-12 items-start">
         <div class="lg:col-span-7 flex flex-col gap-5">
@@ -180,7 +180,7 @@
     </div>
 </section>
 
-{{-- TRAYECTORIA --}}
+{{-- la trayectoria --}}
 <section class="section-shell timeline-section py-20" aria-labelledby="timeline-heading">
     <div class="container-tech grid gap-12 lg:grid-cols-12">
         <div class="lg:col-span-4 flex flex-col gap-4">
@@ -205,7 +205,7 @@
     </div>
 </section>
 
-{{-- PILARES OPERATIVOS --}}
+{{-- los pilares operativos --}}
 <section class="section-shell py-20" aria-labelledby="divisions-heading">
     <div class="container-tech">
         <div class="section-heading mb-10">

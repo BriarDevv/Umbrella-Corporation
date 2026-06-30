@@ -11,9 +11,9 @@ use Illuminate\Database\Seeder;
 class ProductSeeder extends Seeder
 {
     /**
-     * Carga el catálogo viral. Cada producto referencia una categoría por slug
-     * y guarda los campos secundarios del dossier (origen, almacenamiento,
-     * estabilidad, etc.) como JSON para mantener la tabla manejable.
+     * carga el catalogo viral. cada producto apunta a una categoria por slug
+     * y los campos secundarios del dossier (origen, almacenamiento, estabilidad,
+     * etc.) los guardo como JSON asi no lleno la tabla de columnas.
      */
     public function run(): void
     {

@@ -12,8 +12,8 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     /**
-     * Filtros de autorización disponibles. Quedan inline porque son una
-     * lista cerrada del design system, no un dato del catálogo.
+     * los filtros de autorizacion. los dejo fijos aca porque son una lista
+     * cerrada del front, no salen del catalogo.
      *
      * @var array<int, array<string, string>>
      */
@@ -23,6 +23,12 @@ class ProductController extends Controller
         ['key' => 'classified', 'label' => 'CLASIFICADO'],
     ];
 
+    /**
+     * listado del catalogo con los filtros por categoria y autorizacion
+     *
+     * @param  Request  $request
+     * @return View
+     */
     public function index(Request $request): View
     {
         $categorySlug = trim((string) $request->query('categoria', ''));
@@ -43,6 +49,12 @@ class ProductController extends Controller
         ]);
     }
 
+    /**
+     * ficha de un producto + algunos relacionados para que no quede solo
+     *
+     * @param  Product  $product
+     * @return View
+     */
     public function show(Product $product): View
     {
         $product->load('category');

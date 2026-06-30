@@ -1,7 +1,7 @@
 Escuela de Arte Multimedial Da Vinci
 CARRERA: Diseño y desarrollo web
 MATERIA: Portales y Comercio Electronico
-TRABAJO PRACTICO: Primer Parcial
+TRABAJO PRACTICO: Segundo Parcial
 PROFESOR: Carlos Ferrer
 ALUMNO/S: Garcia, Mateo
 CUATRIMESTRE: 4to

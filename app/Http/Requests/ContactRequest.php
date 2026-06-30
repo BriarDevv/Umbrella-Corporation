@@ -9,8 +9,8 @@ use Illuminate\Foundation\Http\FormRequest;
 class ContactRequest extends FormRequest
 {
     /**
-     * Departamentos válidos. Coinciden con la lista del select del formulario
-     * y con la copy de la sección institucional del about.
+     * los departamentos validos. son los mismos que el select del form
+     * y los que aparecen en el about.
      *
      * @var array<int, string>
      */
@@ -30,12 +30,19 @@ class ContactRequest extends FormRequest
         'Nivel 5 — Clasificado',
     ];
 
+    /**
+     * cualquiera puede mandar el form, no hace falta estar logueado
+     *
+     * @return bool
+     */
     public function authorize(): bool
     {
         return true;
     }
 
     /**
+     * las reglas de cada campo del form
+     *
      * @return array<string, array<int, string>>
      */
     public function rules(): array
@@ -51,6 +58,8 @@ class ContactRequest extends FormRequest
     }
 
     /**
+     * los mensajes en español para cada error
+     *
      * @return array<string, string>
      */
     public function messages(): array

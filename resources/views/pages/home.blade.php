@@ -5,7 +5,7 @@
 
 @section('content')
 
-{{-- HERO --}}
+{{-- el hero --}}
 <section class="hero-cinema relative overflow-hidden" data-hero-reveal aria-labelledby="hero-heading">
     <div class="hero-cinema__media" aria-hidden="true">
         <img
@@ -22,7 +22,7 @@
         <div class="hero-cinema__vignette"></div>
     </div>
 
-    {{-- HUD CORNERS --}}
+    {{-- las esquinitas del hud --}}
     <div class="hero-cinema__hud" aria-hidden="true">
         <span class="hero-corner hero-corner--tl"></span>
         <span class="hero-corner hero-corner--tr"></span>
@@ -30,7 +30,7 @@
         <span class="hero-corner hero-corner--br"></span>
     </div>
 
-    {{-- BODY --}}
+    {{-- el cuerpo --}}
     <div class="hero-cinema__body container-tech relative">
         <div class="hero-cinema__stage" data-hero-item>
             <p class="hero-cinema__eyebrow">
@@ -67,7 +67,7 @@
 
 </section>
 
-{{-- CATEGORIES --}}
+{{-- categorias --}}
 <section class="section-shell categories-section py-20" aria-labelledby="categories-heading">
     <div class="container-tech">
         <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
@@ -122,7 +122,7 @@
     </div>
 </section>
 
-{{-- FEATURED — BENTO --}}
+{{-- destacados, el bento --}}
 <section class="section-shell pb-24" aria-labelledby="featured-heading">
     <div class="container-tech">
         <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-10">
@@ -160,7 +160,7 @@
     </div>
 </section>
 
-{{-- CLEARANCE BANNER --}}
+{{-- el banner de acceso --}}
 <section class="section-shell access-section py-20" aria-labelledby="clearance-heading">
     <div class="container-tech grid gap-10 lg:grid-cols-12 items-center">
         <div class="lg:col-span-7 flex flex-col gap-5">
@@ -210,7 +210,7 @@
     </div>
 </section>
 
-{{-- LOGS --}}
+{{-- registros --}}
 <section class="section-shell logs-section py-20 bg-[#0A0A0A] border-y border-[#5D6E6E]/20" aria-labelledby="logs-heading">
     <div class="container-tech">
         <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-10">
@@ -235,7 +235,7 @@
     </div>
 </section>
 
-{{-- FINAL CTA --}}
+{{-- cta del final --}}
 <section class="section-shell py-20" aria-labelledby="final-cta-heading">
     <div class="container-tech">
         <div class="technical-panel relative overflow-hidden p-10 lg:p-14">

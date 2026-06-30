@@ -24,7 +24,7 @@
         ]])
 
         <div class="catalog-hero__grid">
-            {{-- LEFT — copy --}}
+            {{-- columna del texto --}}
             <div class="catalog-hero__copy">
                 <span class="catalog-hero__eyebrow" data-animate="fade-up">Canal Restringido</span>
                 <h1 id="logs-heading" class="catalog-hero__title" data-animate="fade-up">
@@ -35,7 +35,7 @@
                 </p>
             </div>
 
-            {{-- RIGHT — transmission monitor --}}
+            {{-- el monitor de transmision --}}
             <aside class="catalog-console" data-animate="panel" aria-label="Monitor de transmisión">
                 <span class="corner-mark tl" aria-hidden="true"></span>
                 <span class="corner-mark tr" aria-hidden="true"></span>

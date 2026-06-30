@@ -12,7 +12,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen flex flex-col">
-    {{-- Atmospheric grain overlay --}}
+    {{-- el grano que va encima de todo --}}
     <div class="grain-overlay" aria-hidden="true"></div>
 
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:bg-[#ED1C24] focus:text-white focus:px-4 focus:py-2 focus:font-semibold focus:tracking-[0.18em] focus:uppercase focus:text-xs">

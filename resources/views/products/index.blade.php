@@ -24,7 +24,7 @@
         ]])
 
         <div class="catalog-hero__grid">
-            {{-- LEFT — copy --}}
+            {{-- columna del texto --}}
             <div class="catalog-hero__copy">
                 <span class="catalog-hero__eyebrow" data-animate="fade-up">Inventario Biológico</span>
                 <h1 id="catalog-heading" class="catalog-hero__title" data-animate="fade-up">
@@ -35,7 +35,7 @@
                 </p>
             </div>
 
-            {{-- RIGHT — diagnostics console --}}
+            {{-- la consola de diagnostico --}}
             <aside class="catalog-console" data-animate="panel" aria-label="Estado del archivo">
                 <span class="corner-mark tl" aria-hidden="true"></span>
                 <span class="corner-mark tr" aria-hidden="true"></span>
@@ -100,7 +100,7 @@
 
 <section class="section-shell pt-2 pb-24">
     <div class="container-tech flex flex-col gap-10">
-        {{-- FILTERS --}}
+        {{-- filtros --}}
         <form
             method="GET"
             action="{{ route('products.index') }}"
@@ -170,7 +170,7 @@
             </p>
         </form>
 
-        {{-- GRID --}}
+        {{-- la grilla de items --}}
         @if (count($products) > 0)
             <div class="grid gap-7 sm:grid-cols-2 lg:grid-cols-3" data-stagger>
                 @foreach ($products as $product)

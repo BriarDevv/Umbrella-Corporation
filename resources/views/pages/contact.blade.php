@@ -5,7 +5,7 @@
 
 @section('content')
 
-{{-- HERO + DOCUMENT (sharing bg image) --}}
+{{-- el hero y el documento comparten la imagen de fondo --}}
 <section class="section-shell catalog-hero pt-12 pb-16" aria-labelledby="contact-heading">
     <div class="catalog-hero__bg" aria-hidden="true">
         <img
@@ -71,7 +71,7 @@
             <span class="corner-mark bl" aria-hidden="true"></span>
             <span class="corner-mark br" aria-hidden="true"></span>
 
-            {{-- DOC HEADER --}}
+            {{-- encabezado del doc --}}
             <header class="access-doc__head">
                 <div class="access-doc__head-left">
                     <span class="badge badge-classified">
@@ -86,7 +86,7 @@
                 </div>
             </header>
 
-            {{-- SECTION 01 — IDENTIDAD --}}
+            {{-- seccion 01, identidad --}}
             <fieldset class="access-doc__section">
                 <legend class="access-doc__legend">
                     <span class="access-doc__legend-num">01</span>
@@ -109,7 +109,7 @@
                 </div>
             </fieldset>
 
-            {{-- SECTION 02 — ASIGNACIÓN --}}
+            {{-- seccion 02, asignacion --}}
             <fieldset class="access-doc__section">
                 <legend class="access-doc__legend">
                     <span class="access-doc__legend-num">02</span>
@@ -142,7 +142,7 @@
                 </div>
             </fieldset>
 
-            {{-- SECTION 03 — JUSTIFICACIÓN --}}
+            {{-- seccion 03, justificacion --}}
             <fieldset class="access-doc__section">
                 <legend class="access-doc__legend">
                     <span class="access-doc__legend-num">03</span>
@@ -166,7 +166,7 @@
                 @error('agree') <p class="input-error">{{ $message }}</p> @enderror
             </fieldset>
 
-            {{-- DOC FOOTER --}}
+            {{-- pie del doc --}}
             <footer class="access-doc__foot">
                 <div class="access-doc__stamp" aria-hidden="true">
                     <span class="access-doc__stamp-ring">
@@ -194,7 +194,7 @@
     </div>
 </section>
 
-{{-- PROTOCOLO — 3 panels horizontal --}}
+{{-- protocolo, 3 paneles en fila --}}
 <section class="section-shell pb-24" aria-labelledby="protocol-heading">
     <div class="container-tech">
         <div class="section-heading mb-8">

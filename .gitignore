@@ -22,3 +22,10 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# tooling y cosas que no van en la entrega
+.omc/
+.claude/
+CLAUDE.md
+AGENTS.md
+*.pdf

@@ -11,6 +11,11 @@ use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
+    /**
+     * arma la home con las categorias, los destacados y los ultimos posts
+     *
+     * @return View
+     */
     public function index(): View
     {
         return view('pages.home', [

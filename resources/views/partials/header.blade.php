@@ -38,6 +38,55 @@
             </nav>
 
             <div class="flex items-center gap-3">
+                {{-- estado de la sesion. esto lo maneja el auth del backend --}}
+                @auth
+                    <div class="hidden md:flex items-center gap-2">
+                        @if ((auth()->user()->role ?? null) === 'admin')
+                            <a
+                                href="{{ route('admin.dashboard') }}"
+                                class="inline-flex items-center gap-2 border border-[#ED1C24]/50 px-3 py-2 text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-[#ED1C24] transition-colors hover:bg-[#ED1C24] hover:text-white"
+                            >
+                                <x-tabler-layout-dashboard class="size-4" aria-hidden="true" />
+                                <span class="hidden lg:inline">Panel</span>
+                            </a>
+                        @endif
+                        <a
+                            href="{{ route('account.dashboard') }}"
+                            class="inline-flex items-center gap-2 border border-[#5D6E6E]/40 px-3 py-2 text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-[#FFFFFF] transition-colors hover:border-[#ED1C24] hover:text-[#ED1C24]"
+                        >
+                            <x-tabler-user class="size-4" aria-hidden="true" />
+                            <span class="hidden lg:inline">{{ auth()->user()->name }}</span>
+                        </a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button
+                                type="submit"
+                                class="inline-flex items-center gap-2 border border-[#5D6E6E]/40 px-3 py-2 text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-[#9CACAD] transition-colors hover:border-[#ED1C24] hover:text-[#ED1C24]"
+                            >
+                                <x-tabler-logout class="size-4" aria-hidden="true" />
+                                <span class="hidden lg:inline">Salir</span>
+                            </button>
+                        </form>
+                    </div>
+                @else
+                    <div class="hidden md:flex items-center gap-2">
+                        <a
+                            href="{{ route('login') }}"
+                            class="inline-flex items-center gap-2 border border-[#5D6E6E]/40 px-3 py-2 text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-[#FFFFFF] transition-colors hover:border-[#ED1C24] hover:text-[#ED1C24]"
+                        >
+                            <x-tabler-login-2 class="size-4" aria-hidden="true" />
+                            Acceder
+                        </a>
+                        <a
+                            href="{{ route('register') }}"
+                            class="inline-flex items-center gap-2 bg-[#ED1C24] px-3 py-2 text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-white transition-colors hover:bg-[#830F14]"
+                        >
+                            <x-tabler-user-plus class="size-4" aria-hidden="true" />
+                            <span class="hidden lg:inline">Registrarse</span>
+                        </a>
+                    </div>
+                @endauth
+
                 <a
                     href="{{ route('cart') }}"
                     class="inline-flex items-center gap-2 border border-[#5D6E6E]/40 px-3 py-2 text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-[#FFFFFF] transition-colors hover:border-[#ED1C24] hover:text-[#ED1C24]"
@@ -93,6 +142,37 @@
                     </li>
                 @endforeach
             </ul>
+
+            <div class="mt-6 flex flex-col gap-2.5">
+                @auth
+                    @if ((auth()->user()->role ?? null) === 'admin')
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-restricted btn-block">
+                            <x-tabler-layout-dashboard class="size-4" aria-hidden="true" />
+                            Panel de Administración
+                        </a>
+                    @endif
+                    <a href="{{ route('account.dashboard') }}" class="btn btn-secondary btn-block">
+                        <x-tabler-user class="size-4" aria-hidden="true" />
+                        Mi Cuenta
+                    </a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-ghost btn-block">
+                            <x-tabler-logout class="size-4" aria-hidden="true" />
+                            Cerrar Sesión
+                        </button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="btn btn-secondary btn-block">
+                        <x-tabler-login-2 class="size-4" aria-hidden="true" />
+                        Acceder
+                    </a>
+                    <a href="{{ route('register') }}" class="btn btn-primary btn-block">
+                        <x-tabler-user-plus class="size-4" aria-hidden="true" />
+                        Registrarse
+                    </a>
+                @endauth
+            </div>
 
             <p class="mt-6 inline-flex items-center gap-2 font-classified text-[0.65rem] tracking-[0.28em] text-[#9CACAD]">
                 <span class="status-dot status-dot-nominal" aria-hidden="true"></span>

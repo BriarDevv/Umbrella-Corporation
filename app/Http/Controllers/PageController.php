@@ -12,9 +12,8 @@ use Illuminate\Http\RedirectResponse;
 class PageController extends Controller
 {
     /**
-     * Datos institucionales que viven sólo como copy del about.
-     * No corresponden a entidades del dominio (catálogo / blog), por lo
-     * que se mantienen como constantes y no como tablas.
+     * texto institucional que va solo en el about. no es una entidad del
+     * dominio (catalogo / blog) asi que lo dejo como constante, no en tabla.
      *
      * @var array<int, array<string, string>>
      */
@@ -36,9 +35,8 @@ class PageController extends Controller
     ];
 
     /**
-     * Carrito demo: tres slugs fijos representando una sesión simulada.
-     * El parcial no exige carrito persistente; cuando se implemente,
-     * esta lista vendrá de la session/usuario autenticado.
+     * carrito con tres slugs fijos puestos a mano. el parcial todavia no
+     * pide carrito persistente; cuando lo pida esto sale de la session del user.
      *
      * @var array<int, array<string, string|int>>
      */
@@ -48,6 +46,11 @@ class PageController extends Controller
         ['slug' => 'las-plagas', 'qty' => 1],
     ];
 
+    /**
+     * pagina institucional con las divisiones y la linea de tiempo
+     *
+     * @return View
+     */
     public function about(): View
     {
         return view('pages.about', [
@@ -56,16 +59,23 @@ class PageController extends Controller
         ]);
     }
 
+    /**
+     * muestra el form de solicitud de acceso
+     *
+     * @return View
+     */
     public function contact(): View
     {
         return view('pages.contact');
     }
 
     /**
-     * Procesa la solicitud de acceso. La validación vive en ContactRequest;
-     * si pasa, devolvemos al usuario al form con un flag de éxito en sesión.
-     * No persistimos la solicitud porque la consigna no exige carrito ni
-     * envío real, y el sitio es ficcional.
+     * procesa la solicitud de acceso. la validacion la maneja ContactRequest;
+     * si pasa lo devolvemos al form con un flag de exito en la session. no lo
+     * guardamos porque la consigna no pide envio real.
+     *
+     * @param  ContactRequest  $request
+     * @return RedirectResponse
      */
     public function submitContact(ContactRequest $request): RedirectResponse
     {
@@ -77,6 +87,11 @@ class PageController extends Controller
             ->with('contact_full_name', $request->string('full_name')->toString());
     }
 
+    /**
+     * arma el carrito: por cada slug busca el producto y saca el subtotal
+     *
+     * @return View
+     */
     public function cart(): View
     {
         $items = collect(self::DEMO_CART)

@@ -10,8 +10,18 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
-    ->withMiddleware(function (Middleware $middleware): void {
-        //
+     ->withMiddleware(function (Middleware $middleware): void {
+        // alias para poder usar admin en las rutas
+        $middleware->alias([
+            'admin' => \App\Http\Middleware\EnsureAdmin::class,
+        ]);
+
+        // los que toquen una ruta protegida los mandamos para el login
+        $middleware->redirectGuestsTo(function () {
+            session()->flash('status', 'Necesitás iniciar sesión para acceder a esa sección.');
+
+            return route('login');
+        });
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

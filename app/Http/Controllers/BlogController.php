@@ -9,6 +9,11 @@ use Illuminate\Contracts\View\View;
 
 class BlogController extends Controller
 {
+    /**
+     * listado de las entradas ya publicadas
+     *
+     * @return View
+     */
     public function index(): View
     {
         return view('blog.index', [
@@ -16,6 +21,12 @@ class BlogController extends Controller
         ]);
     }
 
+    /**
+     * muestra una entrada y dos relacionadas abajo
+     *
+     * @param  Post  $post
+     * @return View
+     */
     public function show(Post $post): View
     {
         $related = Post::latestPublished()

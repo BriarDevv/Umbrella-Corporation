@@ -43,6 +43,12 @@
                 </dl>
             </header>
 
+            @if ($post->image)
+                <figure class="relative overflow-hidden border border-[#5D6E6E]/25" data-animate="fade-up">
+                    <img src="{{ asset('storage/' . $post->image) }}" alt="Portada de {{ $post['title'] }}" class="w-full aspect-[16/9] object-cover" loading="lazy" />
+                </figure>
+            @endif
+
             <div class="flex flex-col gap-6 text-[#9CACAD] text-base leading-relaxed">
                 <p class="font-classified text-[#ED1C24] uppercase tracking-[0.24em] text-sm">// Extracto del archivo</p>
                 <p class="text-[#FFFFFF] text-lg italic">{{ $post['excerpt'] }}</p>

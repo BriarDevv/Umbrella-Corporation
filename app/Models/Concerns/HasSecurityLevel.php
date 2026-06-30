@@ -7,10 +7,9 @@ namespace App\Models\Concerns;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- * Comparte el comportamiento de "nivel de autorización" entre Product y Post:
- * etiquetas legibles en español, tokens de color del design system y un scope
- * de filtrado reutilizable. La columna que guarda el key se inyecta vía
- * $securityKeyColumn en cada modelo que use este trait.
+ * comparte el "nivel de seguridad" entre Product y Post: la etiqueta en español,
+ * el color para pintar en el front y un scope para filtrar. cada modelo dice en
+ * que columna guarda el key con $securityKeyColumn.
  */
 trait HasSecurityLevel
 {
@@ -24,17 +23,34 @@ trait HasSecurityLevel
         'clear'      => ['label' => 'LIBRE',       'tone' => 'white'],
     ];
 
+    /**
+     * la etiqueta en español del nivel, ej "CRÍTICO"
+     *
+     * @return string
+     */
     public function getSecurityLabelAttribute(): string
     {
         return self::$securityMap[$this->{$this->securityKeyColumn()}]['label']
             ?? strtoupper((string) $this->{$this->securityKeyColumn()});
     }
 
+    /**
+     * el color que le toca al nivel para el front
+     *
+     * @return string
+     */
     public function getSecurityToneAttribute(): string
     {
         return self::$securityMap[$this->{$this->securityKeyColumn()}]['tone'] ?? 'grey';
     }
 
+    /**
+     * filtra por nivel de seguridad. si no le pasas key devuelve todo igual
+     *
+     * @param  Builder      $query
+     * @param  string|null  $key
+     * @return Builder
+     */
     public function scopeBySecurity(Builder $query, ?string $key): Builder
     {
         if ($key === null || $key === '') {
